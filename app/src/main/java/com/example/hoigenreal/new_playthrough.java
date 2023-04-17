@@ -4,9 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,8 @@ public class new_playthrough extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View InflatedViewForFinding;
 
     public new_playthrough() {
         // Required empty public constructor
@@ -53,12 +60,38 @@ public class new_playthrough extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_playthrough, container, false);
+        this.InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
+        if(InflatedViewForFinding!=null) {
+            Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
+            List<Nation> nationList = NationData.getAllNations();
+            Log.d("NATLIST", nationList.get(1).getNationName());
+            NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList);
+            spinner_nations.setAdapter(myNationAdapter);
+
+            spinner_nations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    String selectedNation = adapterView.getItemAtPosition(i).toString();
+                    Log.d("Spinner", "Selected nation: " + selectedNation);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    Log.d("click", "NOTHING CLICKED");
+                }
+            });
+        }
+        return InflatedViewForFinding;
     }
 }
