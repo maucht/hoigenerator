@@ -75,7 +75,8 @@ public class new_playthrough extends Fragment {
             Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
             List<Nation> nationList = NationData.getAllNations();
             Log.d("NATLIST", nationList.get(1).getNationName());
-            NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList);
+            NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList,R.style.spinnerDropdownStyle);
+
             spinner_nations.setAdapter(myNationAdapter);
 
             spinner_nations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

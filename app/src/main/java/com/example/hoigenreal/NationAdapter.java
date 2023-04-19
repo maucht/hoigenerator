@@ -13,11 +13,14 @@ import java.util.List;
 public class NationAdapter extends BaseAdapter {
     private List<Nation> nationList;
     private Context context;
+    private int dropdownStyle;
 
 
-    public NationAdapter(Context context, List<Nation> nationList){
+    public NationAdapter(Context context, List<Nation> nationList, int dropdownStyleId){
         this.context = context;
         this.nationList = nationList;
+        this.dropdownStyle = dropdownStyleId;
+
     }
 
     @Override

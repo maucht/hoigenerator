@@ -28,6 +28,11 @@
     <Spinner
         android:id="@+id/spinner_nations"
 
+        style="@style/SpinnerBackground"
+        android:spinnerMode="dropdown"
+        android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
+        android:spinnerItemStyle="@style/spinnerTextStyle"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -37,4 +42,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginBottom="400dp"
+        android:background="#FFFFFF"
+        android:src="@drawable/star"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
