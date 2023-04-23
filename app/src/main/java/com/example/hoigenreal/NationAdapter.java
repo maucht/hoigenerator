@@ -1,10 +1,12 @@
 package com.example.hoigenreal;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckedTextView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class NationAdapter extends BaseAdapter {
         this.context = context;
         this.nationList = nationList;
         this.dropdownStyle = dropdownStyleId;
+
+
 
     }
 
@@ -41,11 +45,17 @@ public class NationAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.spinner_dropdown, parent, false);
         }
         TextView textView = convertView.findViewById(android.R.id.text1);
         Nation currNation = (Nation) getItem(position);
-        textView.setText(currNation.getNationName());
+        if(textView!=null) {
+            //Log.d("Adapter Text","Setting Text: "+currNation.getNationName());
+            textView.setText(currNation.getNationName());
+        }
+        else{
+            Log.wtf("ADAPTER FUCKUP","textView is null");
+        }
         return convertView;
     }
 }

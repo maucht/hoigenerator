@@ -12,7 +12,7 @@ public class NationData {
         Nation germany = new Nation("Germany",123,0);
         nationList.add(germany);
 
-        Nation france = new Nation("Germany",123,1);
+        Nation france = new Nation("France",123,1);
         nationList.add(france);
 
         Nation britain = new Nation("United Kingdom",123,2);
@@ -23,6 +23,9 @@ public class NationData {
 
         Nation italy = new Nation("Italy", 123,4);
         nationList.add(italy);
+
+        Nation sovietUnion = new Nation("Soviet Union", 123,4);
+        nationList.add(sovietUnion);
 
         Nation other = new Nation("Other",123,5);
         nationList.add(other);

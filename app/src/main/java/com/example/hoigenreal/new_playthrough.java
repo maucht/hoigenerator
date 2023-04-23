@@ -32,7 +32,7 @@ public class new_playthrough extends Fragment {
     private View InflatedViewForFinding;
 
     public new_playthrough() {
-        // Required empty public constructor
+        //constructor
     }
 
     /**
@@ -79,12 +79,40 @@ public class new_playthrough extends Fragment {
 
             spinner_nations.setAdapter(myNationAdapter);
 
+
+
             spinner_nations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    String selectedNation = adapterView.getItemAtPosition(i).toString();
-                    Log.d("Spinner", "Selected nation: " + selectedNation);
+                    Nation selectedNation = (Nation) adapterView.getSelectedItem();
+
+                    Log.d("Spinner", "Selected nation: " + selectedNation.getNationName());
+                    View InflatedViewInsideSpinner = inflater.inflate(R.layout.fragment_new_playthrough,container,false);
+                    View flagView = InflatedViewInsideSpinner.findViewById(R.id.spinner_flag_preview);
+
+                    switch(selectedNation.getNationName()){
+                        case("Germany"):
+                            Log.d("Flag Change","Should set flag to germany");
+                            break;
+                        case("Italy"):
+                            break;
+                        case("France"):
+                            break;
+                        case("United Kingdom"):
+                            break;
+                        case("America"):
+                            break;
+                        case("Japan"):
+                            break;
+                        case("Soviet Union"):
+                            break;
+                        case("Other"):
+                            break;
+                    }
+
+
+
                 }
 
                 @Override
