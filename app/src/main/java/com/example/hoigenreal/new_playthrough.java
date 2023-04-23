@@ -1,7 +1,10 @@
 package com.example.hoigenreal;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -70,7 +74,7 @@ public class new_playthrough extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        this.InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
+        InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
         if(InflatedViewForFinding!=null) {
             Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
             List<Nation> nationList = NationData.getAllNations();
@@ -88,26 +92,34 @@ public class new_playthrough extends Fragment {
                     Nation selectedNation = (Nation) adapterView.getSelectedItem();
 
                     Log.d("Spinner", "Selected nation: " + selectedNation.getNationName());
-                    View InflatedViewInsideSpinner = inflater.inflate(R.layout.fragment_new_playthrough,container,false);
-                    View flagView = InflatedViewInsideSpinner.findViewById(R.id.spinner_flag_preview);
+                    ImageView flagView = InflatedViewForFinding.findViewById(R.id.spinner_flag_preview);
 
                     switch(selectedNation.getNationName()){
                         case("Germany"):
                             Log.d("Flag Change","Should set flag to germany");
+                            flagView.setImageResource(R.mipmap.ic_flag_germany_round);
+
                             break;
                         case("Italy"):
+                            flagView.setImageResource(R.mipmap.ic_flag_italy_round);
                             break;
                         case("France"):
+                            flagView.setImageResource(R.mipmap.ic_flag_france_round);
                             break;
                         case("United Kingdom"):
+                            flagView.setImageResource(R.mipmap.ic_flag_uk_round);
                             break;
                         case("America"):
+                            flagView.setImageResource(R.mipmap.ic_flag_america_round);
                             break;
                         case("Japan"):
+                            flagView.setImageResource(R.mipmap.ic_flag_japan_round);
                             break;
                         case("Soviet Union"):
+                            flagView.setImageResource(R.mipmap.ic_flag_soviet_round);
                             break;
-                        case("Other"):
+                        case("Minor Nation"):
+                            flagView.setImageResource(R.drawable.star);
                             break;
                     }
 
