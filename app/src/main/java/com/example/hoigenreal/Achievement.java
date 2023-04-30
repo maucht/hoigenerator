@@ -1,10 +1,90 @@
 package com.example.hoigenreal;
 
+import android.util.Log;
+
 public class Achievement {
+    public Achievement(String name, int id, int imageId, boolean isFrance, boolean isGermany,
+                            boolean isBritain, boolean isSoviet, boolean isAmerica, boolean isItaly,
+                            boolean isJapan, boolean isOther){
+
+        this.name = name;
+        this.id = id;
+        this.imageId=imageId;
+
+
+        this.isFrance=isFrance;
+        this.isGermany=isGermany;
+        this.isBritain=isBritain;
+        this.isSoviet=isSoviet;
+        this.isAmerica=isAmerica;
+        this.isItaly=isItaly;
+        this.isJapan=isJapan;
+        this.isOther=isOther;
+    } // full constructor
+    public Achievement(String name, int id, int imageId, String dlcPack){
+        this.name = name;
+        this.id=id;
+        this.imageId=imageId;
+
+        this.isFrance=false;
+        this.isGermany=false;
+        this.isBritain=false;
+        this.isSoviet=false;
+        this.isAmerica=false;
+        this.isItaly=false;
+        this.isJapan=false;
+        this.isOther=false;
+    }
+    public void setNationFlag(String nationName){
+        switch(nationName){
+            case("France"):
+                this.isFrance = true;
+                break;
+            case("Germany"):
+                this.isGermany = true;
+                break;
+            case("Britain"):
+                this.isBritain=true;
+                break;
+            case("Soviet"):
+                this.isSoviet=true;
+                break;
+            case("America"):
+                this.isAmerica=true;
+                break;
+            case("Italy"):
+                this.isItaly=true;
+                break;
+            case("Japan"):
+                this.isJapan=true;
+                break;
+            case("Other"):
+                this.isOther=true;
+                break;
+            case("Any"):
+                this.isFrance=true;
+                this.isGermany=true;
+                this.isBritain=true;
+                this.isSoviet=true;
+                this.isAmerica=true;
+                this.isItaly=true;
+                this.isJapan=true;
+                this.isOther=true;
+                break;
+            default:
+                Log.wtf("Nation Data Flag","Nation Data Flag: Unrecognized nationName");
+        }
+    }
+    public void setOtherList(String[] nationsToSet){
+        this.otherArray = nationsToSet;
+
+    }
+
     private String name;
     private int id;
     private int imageId;
 
+    public String dlcPack;
     public boolean isFrance;
     public boolean isGermany;
     public boolean isBritain;
@@ -13,5 +93,7 @@ public class Achievement {
     public boolean isItaly;
     public boolean isJapan;
     public boolean isOther;
+
+    public String[] otherArray=null;
 
 }
