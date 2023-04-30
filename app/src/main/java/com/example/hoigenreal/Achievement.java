@@ -80,6 +80,13 @@ public class Achievement {
 
     }
 
+    public int getId(){
+        return this.id;
+    }
+    public String getName(){
+        return this.name;
+    }
+
     private String name;
     private int id;
     private int imageId;

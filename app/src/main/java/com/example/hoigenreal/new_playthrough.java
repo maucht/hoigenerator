@@ -77,17 +77,15 @@ public class new_playthrough extends Fragment {
         InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
         if(InflatedViewForFinding!=null) {
             Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
+            Spinner spinner_achievements = this.InflatedViewForFinding.findViewById(R.id.spinner_achievements);
             List<Nation> nationList = NationData.getAllNations();
+            List<Achievement> achievementList = AchievementData.getAllAchievements();
+
             Log.d("NATLIST", nationList.get(1).getNationName());
             NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList,R.style.spinnerDropdownStyle);
-
             spinner_nations.setAdapter(myNationAdapter);
-            //spinner_nations.setSelection(7,true);
-
-
 
             spinner_nations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -136,12 +134,14 @@ public class new_playthrough extends Fragment {
 
 
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     Log.d("click", "NOTHING CLICKED");
                 }
             });
+
+            AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle);
+            spinner_achievements.setAdapter(myAchievementAdapter);
         }
         return InflatedViewForFinding;
     }
