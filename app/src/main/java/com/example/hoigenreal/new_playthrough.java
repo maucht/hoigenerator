@@ -117,7 +117,7 @@ public class new_playthrough extends Fragment {
                             flagView.setImageResource(R.mipmap.ic_flag_uk_round);
                             flagView.setColorFilter(0);
                             break;
-                        case("America"):
+                        case("United States"):
                             flagView.setImageResource(R.mipmap.ic_flag_america_round);
                             flagView.setColorFilter(0);
                             break;

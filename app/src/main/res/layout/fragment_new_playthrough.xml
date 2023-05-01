@@ -31,63 +31,53 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="20dp"
-        android:text="Nation"
         android:fontFamily="@font/nunitosans_bold"
+        android:text="Nation"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_nations"
+        app:layout_constraintBottom_toTopOf="@+id/nationLinearLayout"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner_nations"
-
-        style="@style/SpinnerBackground"
-        android:spinnerMode="dropdown"
-        android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
-        android:spinnerItemStyle="@style/spinnerTextStyle"
-
+    <LinearLayout
+        android:id="@+id/nationLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="189dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="86dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/spinner_flag_preview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginStart="300dp"
-        android:layout_marginBottom="405dp"
-        android:adjustViewBounds="true"
-        android:background="#00FFFFFF"
-        android:scaleX="0.4"
-        android:scaleY="0.4"
-        android:src="@drawable/star"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/spinner_flag_preview"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
-    <Spinner
-        android:id="@+id/spinner_achievements"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
 
-        style="@style/SpinnerBackground"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+            android:padding="10dp"
 
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="16dp"
-        android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
-        android:spinnerItemStyle="@style/spinnerTextStyle"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner_nations" />
+
+            android:scaleType="fitXY"
+            android:src="@drawable/star"
+            tools:visibility="visible" />
+
+        <Spinner
+            android:id="@+id/spinner_nations"
+
+            style="@style/SpinnerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
+            android:spinnerItemStyle="@style/spinnerTextStyle"
+            android:spinnerMode="dropdown" />
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/achievementHeader"
@@ -95,7 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
 
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/nunitosans_bold"
 
@@ -103,57 +92,42 @@
         android:text="Achievement"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_achievements"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_nations" />
-
-    <ImageView
-        android:id="@+id/difficulty_image_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginStart="300dp"
-        android:layout_marginBottom="162dp"
-        android:adjustViewBounds="true"
-        android:background="#00FFFFFF"
-        android:scaleX="0.3"
-        android:scaleY="0.3"
-        android:src="@drawable/ic_medium_orange_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/achievementLinearLayout"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner_difficulties"
-        style="@style/SpinnerBackground"
+    <LinearLayout
+        android:id="@+id/achievementLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="189dp"
         android:layout_marginStart="16dp"
-
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="16dp"
-        android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
-
-        android:spinnerItemStyle="@style/spinnerTextStyle"
-        android:spinnerMode="dropdown"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="86dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_achievements" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/difficulty_spinner_image_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginStart="300dp"
-        android:layout_marginBottom="-55dp"
-        android:adjustViewBounds="true"
-        android:background="#00FFFFFF"
-        android:scaleX="0.3"
-        android:scaleY="0.3"
+        <ImageView
+            android:id="@+id/difficulty_image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+            android:padding="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_medium_orange_background" />
 
-        android:src="@drawable/ic_medium_orange_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Spinner
+            android:id="@+id/spinner_achievements"
+
+            style="@style/SpinnerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
+            android:spinnerItemStyle="@style/spinnerTextStyle"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/difficultyHeader"
@@ -166,8 +140,53 @@
         android:text="Difficulty"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_difficulties"
+        app:layout_constraintBottom_toTopOf="@+id/difficultyLinearLayout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/difficultyLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="189dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="86dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_achievements" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/difficulty_spinner_image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+
+
+            android:padding="15dp"
+
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_medium_orange_background" />
+
+        <Spinner
+            android:id="@+id/spinner_difficulties"
+            style="@style/SpinnerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerDropDownItemStyle="@style/spinnerDropdownStyle"
+
+            android:spinnerItemStyle="@style/spinnerTextStyle"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submitGenerationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="89dp"
+        android:layout_marginBottom="170dp"
+        android:text="Generate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
