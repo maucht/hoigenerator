@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -79,8 +80,10 @@ public class new_playthrough extends Fragment {
         if(InflatedViewForFinding!=null) {
             Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
             Spinner spinner_achievements = this.InflatedViewForFinding.findViewById(R.id.spinner_achievements);
+            Spinner spinner_difficulties = this.InflatedViewForFinding.findViewById(R.id.spinner_difficulties);
             List<Nation> nationList = NationData.getAllNations();
             List<Achievement> achievementList = AchievementData.getAllAchievements();
+            List<Difficulty> difficultyList = DifficultyData.getAllDifficulties();
 
             Log.d("NATLIST", nationList.get(1).getNationName());
             NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList,R.style.spinnerDropdownStyle);
@@ -167,6 +170,33 @@ public class new_playthrough extends Fragment {
                     Log.d("click","NOTHING SELECTED: Achievement Spinner");
                 }
             });
+            DifficultyAdapter myDifficultyAdapter = new DifficultyAdapter(getActivity(),difficultyList,R.style.spinnerDropdownStyle);
+            spinner_difficulties.setAdapter(myDifficultyAdapter);
+            spinner_difficulties.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    ImageView difficultySpinnerImage = InflatedViewForFinding.findViewById(R.id.difficulty_spinner_image_view);
+                    difficultySpinnerImage.setImageResource(R.mipmap.ic_easy_blue_round);
+                    Difficulty selectedDifficulty = (Difficulty) adapterView.getSelectedItem();
+
+                    switch(selectedDifficulty.getName()){
+                        case("Easy"):
+                            difficultySpinnerImage.setImageResource(R.mipmap.ic_easy_blue_round);
+                            break;
+                        case("Medium"):
+                            difficultySpinnerImage.setImageResource(R.mipmap.ic_medium_orange_round);
+                            break;
+                        case("Hard"):
+                            difficultySpinnerImage.setImageResource(R.mipmap.ic_hard_red_round);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    Log.d("click","NOTHING SELECTED: Difficulty Spinner");
+                }
+            });
+
         }
         return InflatedViewForFinding;
     }
