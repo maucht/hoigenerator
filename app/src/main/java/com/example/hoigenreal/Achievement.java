@@ -79,6 +79,9 @@ public class Achievement {
         this.otherArray = nationsToSet;
 
     }
+    public void setDifficulty(String pdifficulty){
+        this.difficulty = pdifficulty;
+    }
 
     public int getId(){
         return this.id;
@@ -86,10 +89,12 @@ public class Achievement {
     public String getName(){
         return this.name;
     }
+    public String getDifficulty(){return this.difficulty;}
 
     private String name;
     private int id;
     private int imageId;
+    private String difficulty;
 
     public String dlcPack;
     public boolean isFrance;

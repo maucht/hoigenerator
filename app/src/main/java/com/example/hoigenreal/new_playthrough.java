@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -142,6 +143,30 @@ public class new_playthrough extends Fragment {
 
             AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle);
             spinner_achievements.setAdapter(myAchievementAdapter);
+            spinner_achievements.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
+                    ImageView difficultyImage = InflatedViewForFinding.findViewById(R.id.difficulty_image_view);
+                    difficultyImage.setImageResource(R.mipmap.ic_easy_blue_round);
+                    Achievement selectedAchievement = (Achievement) adapterView.getSelectedItem();
+
+                    switch(selectedAchievement.getDifficulty()){
+                        case("Easy"):
+                            difficultyImage.setImageResource(R.mipmap.ic_easy_blue_round);
+                            break;
+                        case("Medium"):
+                            difficultyImage.setImageResource(R.mipmap.ic_medium_orange_round);
+                            break;
+                        case("Hard"):
+                            difficultyImage.setImageResource(R.mipmap.ic_hard_red_round);
+                    }
+
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent){
+                    Log.d("click","NOTHING SELECTED: Achievement Spinner");
+                }
+            });
         }
         return InflatedViewForFinding;
     }
