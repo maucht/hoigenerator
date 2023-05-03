@@ -1,6 +1,9 @@
 package com.example.hoigenreal;
 
+import android.app.Dialog;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -34,6 +37,10 @@ public class new_playthrough extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public Nation selectedNation;
+    public Achievement selectedAchievement;
+    public Difficulty selectedDifficulty;
 
     private View InflatedViewForFinding;
 
@@ -71,13 +78,14 @@ public class new_playthrough extends Fragment {
 
 
     }
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
         if(InflatedViewForFinding!=null) {
+            View generateButton = this.InflatedViewForFinding.findViewById(R.id.submitGenerationButton);
             Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
             Spinner spinner_achievements = this.InflatedViewForFinding.findViewById(R.id.spinner_achievements);
             Spinner spinner_difficulties = this.InflatedViewForFinding.findViewById(R.id.spinner_difficulties);
@@ -93,13 +101,13 @@ public class new_playthrough extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    Nation selectedNation = (Nation) adapterView.getSelectedItem();
+                    new_playthrough.this.selectedNation = (Nation) adapterView.getSelectedItem();
 
 
                     Log.d("Spinner", "Selected nation: " + selectedNation.getNationName());
                     ImageView flagView = InflatedViewForFinding.findViewById(R.id.spinner_flag_preview);
 
-                    switch(selectedNation.getNationName()){
+                    switch(new_playthrough.this.selectedNation.getNationName()){
                         case("Germany"):
                             Log.d("Flag Change","Should set flag to germany");
                             flagView.setImageResource(R.mipmap.ic_flag_germany_round);
@@ -143,7 +151,6 @@ public class new_playthrough extends Fragment {
                     Log.d("click", "NOTHING CLICKED");
                 }
             });
-
             AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle);
             spinner_achievements.setAdapter(myAchievementAdapter);
             spinner_achievements.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -151,9 +158,9 @@ public class new_playthrough extends Fragment {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
                     ImageView difficultyImage = InflatedViewForFinding.findViewById(R.id.difficulty_image_view);
                     difficultyImage.setImageResource(R.mipmap.ic_easy_blue_round);
-                    Achievement selectedAchievement = (Achievement) adapterView.getSelectedItem();
+                    new_playthrough.this.selectedAchievement = (Achievement) adapterView.getSelectedItem();
 
-                    switch(selectedAchievement.getDifficulty()){
+                    switch(new_playthrough.this.selectedAchievement.getDifficulty()){
                         case("Easy"):
                             difficultyImage.setImageResource(R.mipmap.ic_easy_blue_round);
                             break;
@@ -177,9 +184,9 @@ public class new_playthrough extends Fragment {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                     ImageView difficultySpinnerImage = InflatedViewForFinding.findViewById(R.id.difficulty_spinner_image_view);
                     difficultySpinnerImage.setImageResource(R.mipmap.ic_easy_blue_round);
-                    Difficulty selectedDifficulty = (Difficulty) adapterView.getSelectedItem();
+                    new_playthrough.this.selectedDifficulty = (Difficulty) adapterView.getSelectedItem();
 
-                    switch(selectedDifficulty.getName()){
+                    switch(new_playthrough.this.selectedDifficulty.getName()){
                         case("Easy"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_easy_blue_round);
                             break;
@@ -194,6 +201,29 @@ public class new_playthrough extends Fragment {
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     Log.d("click","NOTHING SELECTED: Difficulty Spinner");
+                }
+            });
+
+            generateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Nation finalSelectedNation = new_playthrough.this.selectedNation;
+                    Achievement finalSelectedAchievement = new_playthrough.this.selectedAchievement;
+                    Difficulty finalSelectedDifficulty = new_playthrough.this.selectedDifficulty;
+
+                    // fail cases
+                    Boolean incompatibleDifficulties = ((finalSelectedAchievement.getDifficulty() != finalSelectedDifficulty.getDifficulty()) && selectedAchievement.getName()!="Any");
+
+                    if(incompatibleDifficulties){
+                        Log.w("Generation Fail","GENERATION FAIL: incompatibleDifficulties. Setting Difficulty to match Achievement Difficulty");
+                    }
+                    Log.d("On Click Button","Should Generate Button");
+
+                    final Dialog generatedDialog = new Dialog(getActivity(),android.R.style.Theme_Black_NoTitleBar);
+                    generatedDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160,0,0,0))); // sets gray background
+                    generatedDialog.setContentView(R.layout.generate_pop_up);
+                    generatedDialog.setCancelable(true);
+                    generatedDialog.show();
                 }
             });
 
