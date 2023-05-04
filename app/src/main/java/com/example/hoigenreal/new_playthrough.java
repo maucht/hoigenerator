@@ -106,39 +106,38 @@ public class new_playthrough extends Fragment {
 
                     Log.d("Spinner", "Selected nation: " + selectedNation.getNationName());
                     ImageView flagView = InflatedViewForFinding.findViewById(R.id.spinner_flag_preview);
-
+                    flagView.setImageResource(new_playthrough.this.selectedNation.getImageId());
                     switch(new_playthrough.this.selectedNation.getNationName()){
                         case("Germany"):
                             Log.d("Flag Change","Should set flag to germany");
-                            flagView.setImageResource(R.mipmap.ic_flag_germany_round);
                             flagView.setColorFilter(0);
                             break;
                         case("Italy"):
-                            flagView.setImageResource(R.mipmap.ic_flag_italy_round);
+
                             flagView.setColorFilter(0);
                             break;
                         case("France"):
-                            flagView.setImageResource(R.mipmap.ic_flag_france_round);
+
                             flagView.setColorFilter(0);
                             break;
                         case("United Kingdom"):
-                            flagView.setImageResource(R.mipmap.ic_flag_uk_round);
+
                             flagView.setColorFilter(0);
                             break;
                         case("United States"):
-                            flagView.setImageResource(R.mipmap.ic_flag_america_round);
+
                             flagView.setColorFilter(0);
                             break;
                         case("Japan"):
-                            flagView.setImageResource(R.mipmap.ic_flag_japan_round);
+
                             flagView.setColorFilter(0);
                             break;
                         case("Soviet Union"):
-                            flagView.setImageResource(R.mipmap.ic_flag_soviet_round);
+
                             flagView.setColorFilter(0);
                             break;
                         case("Any"):
-                            flagView.setImageResource(R.drawable.star);
+
                             flagView.setColorFilter(R.color.md_theme_dark_onPrimaryContainer);
                             break;
                     }

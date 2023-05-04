@@ -9,26 +9,26 @@ public class NationData {
     public static List<Nation> getAllNations(){
         List<Nation> nationList = new ArrayList<>();
 
-        Nation any = new Nation("Any",123,0);
+        Nation any = new Nation("Any",R.drawable.star,0);
         nationList.add(any);
 
 
-        Nation germany = new Nation("Germany",123,1);
+        Nation germany = new Nation("Germany",R.mipmap.ic_flag_germany_round,1);
         nationList.add(germany);
 
-        Nation france = new Nation("France",123,2);
+        Nation france = new Nation("France",R.mipmap.ic_flag_france_round,2);
         nationList.add(france);
 
-        Nation britain = new Nation("United Kingdom",123,3);
+        Nation britain = new Nation("United Kingdom",R.mipmap.ic_flag_uk_round,3);
         nationList.add(britain);
 
-        Nation america = new Nation("United States", 123,4);
+        Nation america = new Nation("United States", R.mipmap.ic_flag_america_round,4);
         nationList.add(america);
 
-        Nation italy = new Nation("Italy", 123,5);
+        Nation italy = new Nation("Italy", R.mipmap.ic_flag_italy_round,5);
         nationList.add(italy);
 
-        Nation sovietUnion = new Nation("Soviet Union", 123,6);
+        Nation sovietUnion = new Nation("Soviet Union", R.mipmap.ic_flag_soviet_round,6);
         nationList.add(sovietUnion);
 
 
