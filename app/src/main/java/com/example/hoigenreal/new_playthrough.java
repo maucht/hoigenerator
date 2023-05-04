@@ -94,8 +94,18 @@ public class new_playthrough extends Fragment {
             List<Achievement> achievementList = AchievementData.getAllAchievements();
             List<Difficulty> difficultyList = DifficultyData.getAllDifficulties();
 
+            this.selectedNation = nationList.get(0);
+            this.selectedAchievement = achievementList.get(0);
+            this.selectedDifficulty = difficultyList.get(0);
+
             Log.d("NATLIST", nationList.get(1).getNationName());
+
             NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList,R.style.spinnerDropdownStyle);
+            AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle,this.selectedDifficulty);
+            DifficultyAdapter myDifficultyAdapter = new DifficultyAdapter(getActivity(),difficultyList,R.style.spinnerDropdownStyle);
+
+
+
             spinner_nations.setAdapter(myNationAdapter);
 
             spinner_nations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -151,7 +161,7 @@ public class new_playthrough extends Fragment {
                     Log.d("click", "NOTHING CLICKED");
                 }
             });
-            AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle);
+
             spinner_achievements.setAdapter(myAchievementAdapter);
             spinner_achievements.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
                 @Override
@@ -177,7 +187,6 @@ public class new_playthrough extends Fragment {
                     Log.d("click","NOTHING SELECTED: Achievement Spinner");
                 }
             });
-            DifficultyAdapter myDifficultyAdapter = new DifficultyAdapter(getActivity(),difficultyList,R.style.spinnerDropdownStyle);
             spinner_difficulties.setAdapter(myDifficultyAdapter);
             spinner_difficulties.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -189,12 +198,19 @@ public class new_playthrough extends Fragment {
                     switch(new_playthrough.this.selectedDifficulty.getName()){
                         case("Easy"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_easy_blue_round);
+                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
                             break;
                         case("Medium"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_medium_orange_round);
+                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
                             break;
                         case("Hard"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_hard_red_round);
+                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
+                            break;
+                        default:
+                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
+                            break;
                     }
                 }
 
@@ -235,6 +251,8 @@ public class new_playthrough extends Fragment {
 
                     generatedAchievementImage.setImageResource(new_playthrough.this.selectedAchievement.getImageId());
                     generatedAchievementText.setText(new_playthrough.this.selectedAchievement.getName());
+
+
 
 
                 }
