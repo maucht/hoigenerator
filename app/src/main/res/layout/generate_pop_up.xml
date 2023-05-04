@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/generatePopUpContainer"
 
@@ -22,18 +23,61 @@
         <LinearLayout
             android:id="@+id/headerGeneratedLinear"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="111dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/nationImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@mipmap/ic_flag_germany" />
+
             <TextView
-                android:id="@+id/generatedNation"
+                android:id="@+id/generatedNationText"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_marginRight="0dp"
                 android:fontFamily="@font/nunitosans_extrabold"
-                android:gravity="center"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="0dp"
+                android:text="Germany"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/achievementGeneratedLinear"
+            android:layout_width="fill_parent"
+            android:layout_height="111dp"
+            android:layout_marginTop="125dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/achievementImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@mipmap/ic_flag_germany" />
+
+            <TextView
+                android:id="@+id/generatedAchievementText"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunitosans_regular"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="0dp"
+                android:text="Germany"
+                android:textColor="#989898"
+                android:textSize="25dp" />
+        </LinearLayout>
+
     </FrameLayout>
 
 </RelativeLayout>
