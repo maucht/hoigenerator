@@ -7,152 +7,152 @@ public class AchievementData {
     public static List<Achievement> getAllAchievements(){
         List<Achievement> achievementList = new ArrayList<>();
 
-        Achievement blankAchievement = new Achievement("Any",0,0,"Core");
+        Achievement blankAchievement = new Achievement("Any",0,R.mipmap.ic_achievement_bearer,"Core");
         blankAchievement.setNationFlag("Any");
         blankAchievement.setDifficulty("Easy");
         achievementList.add(blankAchievement);
 
-        Achievement bearerOfArtillery = new Achievement("Bearer of Artillery", 1, 0,"Core");
+        Achievement bearerOfArtillery = new Achievement("Bearer of Artillery", 1, R.mipmap.ic_achievement_bearer,"Core");
         bearerOfArtillery.setNationFlag("Other");
         bearerOfArtillery.setDifficulty("Hard");
         achievementList.add(bearerOfArtillery);
 
-        Achievement bigEntente = new Achievement("Big Entente",2,0,"Core");
+        Achievement bigEntente = new Achievement("Big Entente",2,R.mipmap.ic_achievement_entente,"Core");
         bigEntente.setNationFlag("France");
         bigEntente.setDifficulty("Medium");
         achievementList.add(bigEntente);
 
-        Achievement canadaFirst = new Achievement("Canada First",3,0,"Core");
+        Achievement canadaFirst = new Achievement("Canada First",3,R.mipmap.ic_achievement_canada,"Core");
         canadaFirst.setNationFlag("Other");
         canadaFirst.setDifficulty("Easy");
         achievementList.add(canadaFirst);
 
-        Achievement destroyerOfWorlds = new Achievement("Destroyer of Worlds",4,0,"Core");
+        Achievement destroyerOfWorlds = new Achievement("Destroyer of Worlds",4,R.mipmap.ic_achievement_destroyer,"Core");
         destroyerOfWorlds.setNationFlag("Any");
         destroyerOfWorlds.setDifficulty("Easy");
         achievementList.add(destroyerOfWorlds);
 
-        Achievement duceNukedEm = new Achievement("Duce Nuked'em",5,0,"Core");
+        Achievement duceNukedEm = new Achievement("Duce Nuked'em",5,R.mipmap.ic_achievement_duce,"Core");
         duceNukedEm.setNationFlag("Italy");
         duceNukedEm.setDifficulty("Medium");
         achievementList.add(duceNukedEm);
 
-        Achievement forgeOfVictory = new Achievement("Forge of Victory",6,0,"Core");
+        Achievement forgeOfVictory = new Achievement("Forge of Victory",6,R.mipmap.ic_achievement_forge,"Core");
         forgeOfVictory.setNationFlag("Other");
         forgeOfVictory.setDifficulty("Easy");
         achievementList.add(forgeOfVictory);
 
-        Achievement friendInNeed = new Achievement("Friend in Need",7,0,"Core");
+        Achievement friendInNeed = new Achievement("Friend in Need",7,R.mipmap.ic_achievement_friend,"Core");
         friendInNeed.setNationFlag("Any");
         friendInNeed.setDifficulty("Easy");
         achievementList.add(friendInNeed);
 
-        Achievement masterOfWar = new Achievement("Master of War",8,0,"Core");
+        Achievement masterOfWar = new Achievement("Master of War",8,R.mipmap.ic_achievement_master,"Core");
         masterOfWar.setNationFlag("Any");
         masterOfWar.setDifficulty("Medium");
         achievementList.add(masterOfWar);
 
-        Achievement medPlutonium = new Achievement("Med plutonium",9,0,"Core");
+        Achievement medPlutonium = new Achievement("Med plutonium",9,R.mipmap.ic_achievement_med,"Core");
         medPlutonium.setNationFlag("Other");
         medPlutonium.setDifficulty("Medium");
         achievementList.add(medPlutonium);
 
-        Achievement mineIsBigger = new Achievement("Mine is bigger than yours",10,0,"Core");
+        Achievement mineIsBigger = new Achievement("Mine is bigger than yours",10,R.mipmap.ic_achievement_bigger,"Core");
         mineIsBigger.setNationFlag("Any");
         mineIsBigger.setDifficulty("Easy");
         achievementList.add(mineIsBigger);
 
-        Achievement newWorldOrder = new Achievement("New World Order",11,0,"Core");
+        Achievement newWorldOrder = new Achievement("New World Order",11,R.mipmap.ic_achievement_nwo,"Core");
         newWorldOrder.setNationFlag("Any");
         newWorldOrder.setDifficulty("Medium");
         achievementList.add(newWorldOrder);
 
-        Achievement noCountryForOldMen = new Achievement("No country for old men",12,0,"Core");
+        Achievement noCountryForOldMen = new Achievement("No country for old men",12,R.mipmap.ic_achievement_oldmen,"Core");
         noCountryForOldMen.setNationFlag("Any");
         noCountryForOldMen.setDifficulty("Easy");
         achievementList.add(noCountryForOldMen);
 
-        Achievement nobodyExpects = new Achievement("Nobody expects...",13,0,"Core");
+        Achievement nobodyExpects = new Achievement("Nobody expects...",13,R.mipmap.ic_achievement_nobody,"Core");
         nobodyExpects.setNationFlag("Other");
         nobodyExpects.setDifficulty("Hard");
         achievementList.add(nobodyExpects);
 
-        Achievement northernLight = new Achievement("Northern Light",14,0,"Core");
+        Achievement northernLight = new Achievement("Northern Light",14,R.mipmap.ic_achievement_northernlight,"Core");
         northernLight.setNationFlag("Other");
         northernLight.setDifficulty("Medium");
         achievementList.add(northernLight);
 
-        Achievement onceMoreMate = new Achievement("Once More Mate",15,0,"Core");
+        Achievement onceMoreMate = new Achievement("Once More Mate",15,R.mipmap.ic_achievement_oncemore,"Core");
         onceMoreMate.setNationFlag("Other");
         onceMoreMate.setDifficulty("Medium");
         achievementList.add(onceMoreMate);
 
-        Achievement oneEmpire = new Achievement("One Empire",16,0,"Core");
+        Achievement oneEmpire = new Achievement("One Empire",16,R.mipmap.ic_achievement_oneempire,"Core");
         oneEmpire.setNationFlag("Britain");
         oneEmpire.setDifficulty("Medium");
         achievementList.add(oneEmpire);
 
-        Achievement operationSeaLion = new Achievement("Operation Sea Lion",17,0,"Core");
+        Achievement operationSeaLion = new Achievement("Operation Sea Lion",17,R.mipmap.ic_achievement_sealion,"Core");
         operationSeaLion.setNationFlag("Germany");
         operationSeaLion.setDifficulty("Easy");
         achievementList.add(operationSeaLion);
 
-        Achievement partyLikeIts = new Achievement("Party like it's 1520",18,0,"Core");
+        Achievement partyLikeIts = new Achievement("Party like it's 1520",18,R.mipmap.ic_achievement_party,"Core");
         partyLikeIts.setNationFlag("Other");
         partyLikeIts.setDifficulty("Medium");
         achievementList.add(partyLikeIts);
 
-        Achievement polandCanIntoSpace = new Achievement("Poland Can Into Space",19,0,"Core");
+        Achievement polandCanIntoSpace = new Achievement("Poland Can Into Space",19,R.mipmap.ic_achievement_intospace,"Core");
         polandCanIntoSpace.setNationFlag("Other");
         polandCanIntoSpace.setDifficulty("Easy");
         achievementList.add(polandCanIntoSpace);
 
-        Achievement sunsetInvasion = new Achievement("Sunset Invasion",20,0,"Core");
+        Achievement sunsetInvasion = new Achievement("Sunset Invasion",20,R.mipmap.ic_achievement_sunset,"Core");
         sunsetInvasion.setNationFlag("Other");
         sunsetInvasion.setDifficulty("Medium");
         achievementList.add(sunsetInvasion);
 
-        Achievement revengeOfMontezuma = new Achievement("The Revenge of Montezuma",21,0,"Core");
+        Achievement revengeOfMontezuma = new Achievement("The Revenge of Montezuma",21,R.mipmap.ic_achievement_montezuma,"Core");
         revengeOfMontezuma.setNationFlag("Other");
         revengeOfMontezuma.setDifficulty("Medium");
         achievementList.add(revengeOfMontezuma);
 
-        Achievement revolutionTriumphant = new Achievement("The Revolution Triumphant",22,0,"Core");
+        Achievement revolutionTriumphant = new Achievement("The Revolution Triumphant",22,R.mipmap.ic_achievement_revolution,"Core");
         revolutionTriumphant.setNationFlag("Soviet");
         revolutionTriumphant.setDifficulty("Easy");
         achievementList.add(revolutionTriumphant);
 
-        Achievement timeOnOurSide = new Achievement("Time is on our side",23,0,"Core");
+        Achievement timeOnOurSide = new Achievement("Time is on our side",23,R.mipmap.ic_achievement_timeonourside,"Core");
         timeOnOurSide.setNationFlag("Any");
         timeOnOurSide.setDifficulty("Easy");
         achievementList.add(timeOnOurSide);
 
-        Achievement transportTycoon = new Achievement("Transport Tycoon",24,0,"Core");
+        Achievement transportTycoon = new Achievement("Transport Tycoon",24,R.mipmap.ic_achievement_transport,"Core");
         transportTycoon.setNationFlag("Any");
         transportTycoon.setDifficulty("Easy");
         achievementList.add(transportTycoon);
 
-        Achievement trueBlitzkrieg = new Achievement("True Blitzkrieg",25,0,"Core");
+        Achievement trueBlitzkrieg = new Achievement("True Blitzkrieg",25,R.mipmap.ic_achievement_trueblitz,"Core");
         trueBlitzkrieg.setNationFlag("Germany");
         trueBlitzkrieg.setDifficulty("Easy");
         achievementList.add(trueBlitzkrieg);
 
-        Achievement unitedNetherlands = new Achievement("United Netherlands",26,0,"Core");
+        Achievement unitedNetherlands = new Achievement("United Netherlands",26,R.mipmap.ic_achievement_unitednetherlands,"Core");
         unitedNetherlands.setNationFlag("Other");
         unitedNetherlands.setDifficulty("Easy");
         achievementList.add(unitedNetherlands);
 
-        Achievement viveLaFrance = new Achievement("Vive la France",27,0,"Core");
+        Achievement viveLaFrance = new Achievement("Vive la France",27,R.mipmap.ic_achievement_vivalafrance,"Core");
         viveLaFrance.setNationFlag("France");
         viveLaFrance.setDifficulty("Easy");
         achievementList.add(viveLaFrance);
 
-        Achievement builtItInADay = new Achievement("We'll Build it in a Day",28,0,"Core");
+        Achievement builtItInADay = new Achievement("We'll Build it in a Day",28,R.mipmap.ic_achievement_buildit,"Core");
         builtItInADay.setNationFlag("Any");
         builtItInADay.setDifficulty("Easy");
         achievementList.add(builtItInADay);
 
-        Achievement wunderwaffen = new Achievement("Wunderwaffen",29,0,"Core");
+        Achievement wunderwaffen = new Achievement("Wunderwaffen",29,R.mipmap.ic_achievement_wunderwaffen,"Core");
         wunderwaffen.setNationFlag("Any");
         wunderwaffen.setDifficulty("Easy");
         achievementList.add(wunderwaffen);

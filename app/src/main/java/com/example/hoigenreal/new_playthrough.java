@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -223,6 +224,19 @@ public class new_playthrough extends Fragment {
                     generatedDialog.setContentView(R.layout.generate_pop_up);
                     generatedDialog.setCancelable(true);
                     generatedDialog.show();
+
+                    ImageView generatedNationImage = (ImageView) generatedDialog.findViewById(R.id.nationImageView);
+                    TextView generatedNationText = (TextView) generatedDialog.findViewById(R.id.generatedNationText);
+                    ImageView generatedAchievementImage = (ImageView) generatedDialog.findViewById(R.id.achievementImageView);
+                    TextView generatedAchievementText = (TextView) generatedDialog.findViewById(R.id.generatedAchievementText);
+
+                    generatedNationImage.setImageResource(new_playthrough.this.selectedNation.getImageId());
+                    generatedNationText.setText(new_playthrough.this.selectedNation.getNationName());
+
+                    generatedAchievementImage.setImageResource(new_playthrough.this.selectedAchievement.getImageId());
+                    generatedAchievementText.setText(new_playthrough.this.selectedAchievement.getName());
+
+
                 }
             });
 

@@ -90,6 +90,7 @@ public class Achievement {
         return this.name;
     }
     public String getDifficulty(){return this.difficulty;}
+    public int getImageId(){return this.imageId;}
 
     private String name;
     private int id;
