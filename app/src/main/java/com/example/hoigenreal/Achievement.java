@@ -2,6 +2,9 @@ package com.example.hoigenreal;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Achievement {
     public Achievement(String name, int id, int imageId, boolean isFrance, boolean isGermany,
                             boolean isBritain, boolean isSoviet, boolean isAmerica, boolean isItaly,
@@ -91,6 +94,34 @@ public class Achievement {
     }
     public String getDifficulty(){return this.difficulty;}
     public int getImageId(){return this.imageId;}
+    public List<String> getValidNationList(){
+        List<String> validNationList = new ArrayList<>();
+        if(this.isFrance){
+            validNationList.add("France");
+        }
+        if(this.isGermany){
+            validNationList.add("Germany");
+        }
+        if(this.isBritain){
+            validNationList.add("Britain");
+        }
+        if(this.isSoviet){
+            validNationList.add("Soviet");
+        }
+        if(this.isAmerica){
+            validNationList.add("USA");
+        }
+        if(this.isItaly){
+            validNationList.add("Italy");
+        }
+        if(this.isJapan){
+            validNationList.add("Japan");
+        }
+        if(this.isOther){
+            validNationList.add("Other");
+        }
+        return validNationList;
+    }
 
     private String name;
     private int id;

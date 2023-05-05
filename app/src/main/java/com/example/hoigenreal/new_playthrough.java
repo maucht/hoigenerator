@@ -101,7 +101,7 @@ public class new_playthrough extends Fragment {
             Log.d("NATLIST", nationList.get(1).getNationName());
 
             NationAdapter myNationAdapter = new NationAdapter(getActivity(), nationList,R.style.spinnerDropdownStyle);
-            AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle,this.selectedDifficulty);
+            AchievementAdapter myAchievementAdapter = new AchievementAdapter(getActivity(),achievementList,R.style.spinnerDropdownStyle,this.selectedDifficulty,this.selectedNation);
             DifficultyAdapter myDifficultyAdapter = new DifficultyAdapter(getActivity(),difficultyList,R.style.spinnerDropdownStyle);
 
 
@@ -118,6 +118,7 @@ public class new_playthrough extends Fragment {
                     Log.d("Spinner", "Selected nation: " + selectedNation.getNationName());
                     ImageView flagView = InflatedViewForFinding.findViewById(R.id.spinner_flag_preview);
                     flagView.setImageResource(new_playthrough.this.selectedNation.getImageId());
+                    myAchievementAdapter.setSelectedChange(new_playthrough.this.selectedDifficulty,new_playthrough.this.selectedNation,achievementList);
                     switch(new_playthrough.this.selectedNation.getNationName()){
                         case("Germany"):
                             Log.d("Flag Change","Should set flag to germany");
@@ -198,18 +199,18 @@ public class new_playthrough extends Fragment {
                     switch(new_playthrough.this.selectedDifficulty.getName()){
                         case("Easy"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_easy_blue_round);
-                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
+                            myAchievementAdapter.setSelectedChange(new_playthrough.this.selectedDifficulty,new_playthrough.this.selectedNation,achievementList);
                             break;
                         case("Medium"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_medium_orange_round);
-                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
+                            myAchievementAdapter.setSelectedChange(new_playthrough.this.selectedDifficulty,new_playthrough.this.selectedNation,achievementList);
                             break;
                         case("Hard"):
                             difficultySpinnerImage.setImageResource(R.mipmap.ic_hard_red_round);
-                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
+                            myAchievementAdapter.setSelectedChange(new_playthrough.this.selectedDifficulty,new_playthrough.this.selectedNation,achievementList);
                             break;
                         default:
-                            myAchievementAdapter.setSelectedDifficulty(new_playthrough.this.selectedDifficulty,achievementList);
+                            myAchievementAdapter.setSelectedChange(new_playthrough.this.selectedDifficulty,new_playthrough.this.selectedNation,achievementList);
                             break;
                     }
                 }

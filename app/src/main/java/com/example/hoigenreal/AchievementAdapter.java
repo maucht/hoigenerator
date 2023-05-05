@@ -16,43 +16,66 @@ public class AchievementAdapter extends BaseAdapter {
     private List<Achievement> achievementList;
     private Context context;
     private int dropdownStyle;
-    private Boolean isDifficultySelected=false;
+    private Nation selectedNation;
     private Difficulty selectedDifficulty;
 
 
-    public AchievementAdapter(Context context, List<Achievement> achievementList, int dropdownStyleId,Difficulty selectedDifficulty){
+    public AchievementAdapter(Context context, List<Achievement> achievementList,
+                              int dropdownStyleId,Difficulty selectedDifficulty,
+                              Nation selectedNation){
         this.context = context;
         this.achievementList = achievementList;
         this.dropdownStyle = dropdownStyleId;
-        this.isDifficultySelected = (selectedDifficulty.getName()!="Any");
+        this.selectedNation = selectedNation;
         this.selectedDifficulty = selectedDifficulty;
-        this.filterAchievementList(achievementList,selectedDifficulty);
+        this.filterAchievementListDifficulty(achievementList,selectedDifficulty,selectedNation);
+        this.filterAchievementListNation(achievementList,selectedDifficulty,selectedNation);
 
 
 
 
     }
-    private void filterAchievementList(List<Achievement> achievementList, Difficulty selectedDifficulty) {
+    private void filterAchievementListDifficulty(List<Achievement> achievementList, Difficulty selectedDifficulty, Nation selectedNation) {
         if (selectedDifficulty.getName().equals("Any")) {
             Log.d("Adapter Filter", "AchAdapter Filter: Difficulty at any");
+            this.achievementList = achievementList;
             return;
         } else {
             List<Achievement> filteredList = new ArrayList<>();
             Log.d("Adapter Filter", "AchAdapter Filter: Difficulty NOT at any");
             for (Achievement achievement : achievementList) {
-                if (achievement.getDifficulty().equals(selectedDifficulty.getDifficulty())) {
+                if (achievement.getDifficulty().equals(selectedDifficulty.getDifficulty()) || achievement.getName()=="Any") {
                     filteredList.add(achievement);
                 }
             }
             this.achievementList = filteredList;
         }
     }
-    public void setSelectedDifficulty(Difficulty selectedDifficulty,List<Achievement> nAchievementList) {
-        this.selectedDifficulty = selectedDifficulty;
-        this.filterAchievementList(nAchievementList,selectedDifficulty);
+    private void filterAchievementListNation(List<Achievement> achievementList, Difficulty selectedDifficulty, Nation selectedNation) {
+        if (selectedNation.getNationName().equals("Any")) {
+            Log.d("Adapter Filter", "AchAdapter Filter: Nation at any");
+            this.achievementList = achievementList;
+            return;
+        } else {
+            List<Achievement> filteredList = new ArrayList<>();
+            Log.d("Adapter Filter", "AchAdapter Filter: Nation NOT at any");
+            for (Achievement achievement : achievementList) {
+                if (achievement.getValidNationList().contains(selectedNation.getNationName()) || achievement.getName()=="Any") {
+                    Log.i("AchAdapter Adding","ACHADAPTER ADDING NAT: "+selectedNation.getNationName());
+                    filteredList.add(achievement); //c
+                }
+            }
+            this.achievementList = filteredList;
+        }
+    }
+    public void setSelectedChange(Difficulty nselectedDifficulty,Nation zselectedNation,List<Achievement> nAchievementList) {
+        this.selectedDifficulty = nselectedDifficulty;
+        this.selectedNation = zselectedNation;
+        this.filterAchievementListDifficulty(nAchievementList,nselectedDifficulty,zselectedNation);
+        this.filterAchievementListNation(this.achievementList,nselectedDifficulty,zselectedNation);
+        // PROBLEM at function above
         notifyDataSetChanged();
     }
-
     @Override
     public int getCount() {
         return achievementList.size();
