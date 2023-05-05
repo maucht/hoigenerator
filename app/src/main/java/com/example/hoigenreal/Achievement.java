@@ -103,13 +103,13 @@ public class Achievement {
             validNationList.add("Germany");
         }
         if(this.isBritain){
-            validNationList.add("Britain");
+            validNationList.add("United Kingdom");
         }
         if(this.isSoviet){
-            validNationList.add("Soviet");
+            validNationList.add("Soviet Union");
         }
         if(this.isAmerica){
-            validNationList.add("USA");
+            validNationList.add("United States");
         }
         if(this.isItaly){
             validNationList.add("Italy");

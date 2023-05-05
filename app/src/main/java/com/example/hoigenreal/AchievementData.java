@@ -7,7 +7,7 @@ public class AchievementData {
     public static List<Achievement> getAllAchievements(){
         List<Achievement> achievementList = new ArrayList<>();
 
-        Achievement blankAchievement = new Achievement("Any",0,R.mipmap.ic_achievement_bearer,"Core");
+        Achievement blankAchievement = new Achievement("Any",0,R.mipmap.ic_hoi_default_icon,"Core");
         blankAchievement.setNationFlag("Any");
         blankAchievement.setDifficulty("Easy");
         achievementList.add(blankAchievement);
