@@ -21,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +44,10 @@ public class new_playthrough extends Fragment {
     public Nation selectedNation;
     public Achievement selectedAchievement;
     public Difficulty selectedDifficulty;
+
+    public List<Nation> listOfAllNations;
+    public List<Achievement> listOfAllAchievements; // THESE 3 ARE ONLY USED IN GENERATION
+    public List<Difficulty> listOfAllDifficulties;
 
     private View InflatedViewForFinding;
 
@@ -93,6 +99,10 @@ public class new_playthrough extends Fragment {
             List<Nation> nationList = NationData.getAllNations();
             List<Achievement> achievementList = AchievementData.getAllAchievements();
             List<Difficulty> difficultyList = DifficultyData.getAllDifficulties();
+
+            this.listOfAllNations=nationList;
+            this.listOfAllAchievements=achievementList;
+            this.listOfAllDifficulties=difficultyList;
 
             this.selectedNation = nationList.get(0);
             this.selectedAchievement = achievementList.get(0);
@@ -224,17 +234,72 @@ public class new_playthrough extends Fragment {
             generateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Nation finalSelectedNation = new_playthrough.this.selectedNation;
-                    Achievement finalSelectedAchievement = new_playthrough.this.selectedAchievement;
-                    Difficulty finalSelectedDifficulty = new_playthrough.this.selectedDifficulty;
+
 
                     // fail cases
-                    Boolean incompatibleDifficulties = ((finalSelectedAchievement.getDifficulty() != finalSelectedDifficulty.getDifficulty()) && selectedAchievement.getName()!="Any");
+                    Boolean incompatibleDifficulties = ((new_playthrough.this.selectedAchievement.getDifficulty() != new_playthrough.this.selectedDifficulty.getDifficulty()) && selectedAchievement.getName()!="Any");
 
                     if(incompatibleDifficulties){
                         Log.w("Generation Fail","GENERATION FAIL: incompatibleDifficulties. Setting Difficulty to match Achievement Difficulty");
                     }
+                    if(new_playthrough.this.selectedDifficulty.getName()=="Any"){ // this tree will decide everything. no need for another
+                        Random randomObj = new Random();
+                        int randomDifficultyPos = randomObj.nextInt(3)+1;
+                        new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(randomDifficultyPos);
+                        Log.i("Generating Random","Difficulty: "+new_playthrough.this.selectedDifficulty.getName());
+
+                        if(new_playthrough.this.selectedAchievement.getName()=="Any") {
+
+                            if (new_playthrough.this.selectedNation.getNationName() == "Any") {
+                                List<Achievement> suitableRandomAchievements = new ArrayList<>();
+
+                                for (Achievement currAchievement : new_playthrough.this.listOfAllAchievements) {
+                                    if (currAchievement.getDifficulty() == new_playthrough.this.selectedDifficulty.getName()) {
+                                        suitableRandomAchievements.add(currAchievement);
+                                    }
+                                }
+
+                                int randomAchievementPos = randomObj.nextInt(suitableRandomAchievements.size() - 1) + 1;
+                                new_playthrough.this.selectedAchievement = new_playthrough.this.listOfAllAchievements.get(randomAchievementPos);
+                                Log.i("Generating Random", "Random Achievement Pool Size: " + suitableRandomAchievements.size());
+                                Log.i("Generating Random", "Random Achievement Generated: " + new_playthrough.this.selectedAchievement);
+                                // generate nation based on achievement pulled
+                                List<String> validNationList = new_playthrough.this.selectedAchievement.getValidNationList();
+                                int validNationListSize = validNationList.size();
+                                int randomNationPos = randomObj.nextInt(validNationListSize);
+                                String selectedNationString = validNationList.get(randomNationPos);
+                                Log.i("Generating Random","FULL VALID NATION LIST: "+validNationList);
+                                Log.i("Generating Random","GENERATED NATION: "+selectedNationString);
+                                if(selectedNationString=="Other"){
+                                    Log.wtf("Generating Random","IMPLEMENT GET OTHER SPECIFIC NATION");
+                                    new_playthrough.this.selectedNation = new_playthrough.this.selectedAchievement.getSpecificOtherNation();
+                                }
+                                else {
+                                    for (Nation currNation : new_playthrough.this.listOfAllNations) {
+                                        if (currNation.getNationName() == selectedNationString) {
+                                            new_playthrough.this.selectedNation = currNation;
+                                            Log.i("Generating Random", "RANDOM NATION: " + currNation);
+                                            break;
+                                        }
+                                    }
+                                }
+
+
+
+                            }
+                            else{
+
+                            }//get nation name, get suitable achievements based on that
+                        }
+                        else{
+
+                        }
+                    }
                     Log.d("On Click Button","Should Generate Button");
+
+                    Nation finalSelectedNation = new_playthrough.this.selectedNation;
+                    Achievement finalSelectedAchievement = new_playthrough.this.selectedAchievement;
+                    Difficulty finalSelectedDifficulty = new_playthrough.this.selectedDifficulty;
 
                     final Dialog generatedDialog = new Dialog(getActivity(),android.R.style.Theme_Black_NoTitleBar);
                     generatedDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160,0,0,0))); // sets gray background

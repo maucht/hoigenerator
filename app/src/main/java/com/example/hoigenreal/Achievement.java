@@ -85,6 +85,9 @@ public class Achievement {
     public void setDifficulty(String pdifficulty){
         this.difficulty = pdifficulty;
     }
+    public void setSpecificOtherNation(Nation specificNation){
+        this.specificOtherNation = specificNation;
+    }
 
     public int getId(){
         return this.id;
@@ -123,6 +126,10 @@ public class Achievement {
         return validNationList;
     }
 
+    public Nation getSpecificOtherNation() {
+        return this.specificOtherNation;
+    }
+
     private String name;
     private int id;
     private int imageId;
@@ -137,6 +144,8 @@ public class Achievement {
     public boolean isItaly;
     public boolean isJapan;
     public boolean isOther;
+
+    public Nation specificOtherNation;
 
     public String[] otherArray=null;
 

@@ -15,6 +15,7 @@ public class AchievementData {
         Achievement bearerOfArtillery = new Achievement("Bearer of Artillery", 1, R.mipmap.ic_achievement_bearer,"Core");
         bearerOfArtillery.setNationFlag("Other");
         bearerOfArtillery.setDifficulty("Hard");
+        bearerOfArtillery.setSpecificOtherNation(new Nation("Poland", R.mipmap.ic_flag_poland_round,7));
         achievementList.add(bearerOfArtillery);
 
         Achievement bigEntente = new Achievement("Big Entente",2,R.mipmap.ic_achievement_entente,"Core");
@@ -25,6 +26,7 @@ public class AchievementData {
         Achievement canadaFirst = new Achievement("Canada First",3,R.mipmap.ic_achievement_canada,"Core");
         canadaFirst.setNationFlag("Other");
         canadaFirst.setDifficulty("Easy");
+        canadaFirst.setSpecificOtherNation(new Nation("Canada", R.mipmap.ic_flag_canada_round,8));
         achievementList.add(canadaFirst);
 
         Achievement destroyerOfWorlds = new Achievement("Destroyer of Worlds",4,R.mipmap.ic_achievement_destroyer,"Core");
@@ -40,6 +42,7 @@ public class AchievementData {
         Achievement forgeOfVictory = new Achievement("Forge of Victory",6,R.mipmap.ic_achievement_forge,"Core");
         forgeOfVictory.setNationFlag("Other");
         forgeOfVictory.setDifficulty("Easy");
+        forgeOfVictory.setSpecificOtherNation(new Nation("Belgium", R.mipmap.ic_flag_belgium_round,9));
         achievementList.add(forgeOfVictory);
 
         Achievement friendInNeed = new Achievement("Friend in Need",7,R.mipmap.ic_achievement_friend,"Core");
@@ -55,6 +58,7 @@ public class AchievementData {
         Achievement medPlutonium = new Achievement("Med plutonium",9,R.mipmap.ic_achievement_med,"Core");
         medPlutonium.setNationFlag("Other");
         medPlutonium.setDifficulty("Medium");
+        medPlutonium.setSpecificOtherNation(new Nation("Sweden", R.mipmap.ic_flag_sweden_round,10));
         achievementList.add(medPlutonium);
 
         Achievement mineIsBigger = new Achievement("Mine is bigger than yours",10,R.mipmap.ic_achievement_bigger,"Core");
@@ -75,16 +79,19 @@ public class AchievementData {
         Achievement nobodyExpects = new Achievement("Nobody expects...",13,R.mipmap.ic_achievement_nobody,"Core");
         nobodyExpects.setNationFlag("Other");
         nobodyExpects.setDifficulty("Hard");
+        nobodyExpects.setSpecificOtherNation(new Nation("Spain", R.mipmap.ic_flag_nationalist_spain_round,11));
         achievementList.add(nobodyExpects);
 
         Achievement northernLight = new Achievement("Northern Light",14,R.mipmap.ic_achievement_northernlight,"Core");
         northernLight.setNationFlag("Other");
         northernLight.setDifficulty("Medium");
+        northernLight.setSpecificOtherNation(new Nation("Sweden", R.mipmap.ic_flag_sweden_round,9));
         achievementList.add(northernLight);
 
         Achievement onceMoreMate = new Achievement("Once More Mate",15,R.mipmap.ic_achievement_oncemore,"Core");
         onceMoreMate.setNationFlag("Other");
         onceMoreMate.setDifficulty("Medium");
+        onceMoreMate.setSpecificOtherNation(new Nation("Australia", R.mipmap.ic_flag_australia_round,12));
         achievementList.add(onceMoreMate);
 
         Achievement oneEmpire = new Achievement("One Empire",16,R.mipmap.ic_achievement_oneempire,"Core");
@@ -100,21 +107,24 @@ public class AchievementData {
         Achievement partyLikeIts = new Achievement("Party like it's 1520",18,R.mipmap.ic_achievement_party,"Core");
         partyLikeIts.setNationFlag("Other");
         partyLikeIts.setDifficulty("Medium");
+        partyLikeIts.setSpecificOtherNation(new Nation("Denmark", R.mipmap.ic_flag_denmark_round,13));
         achievementList.add(partyLikeIts);
 
         Achievement polandCanIntoSpace = new Achievement("Poland Can Into Space",19,R.mipmap.ic_achievement_intospace,"Core");
         polandCanIntoSpace.setNationFlag("Other");
         polandCanIntoSpace.setDifficulty("Easy");
+        polandCanIntoSpace.setSpecificOtherNation(new Nation("Poland", R.mipmap.ic_flag_poland_round,7));
         achievementList.add(polandCanIntoSpace);
 
         Achievement sunsetInvasion = new Achievement("Sunset Invasion",20,R.mipmap.ic_achievement_sunset,"Core");
-        sunsetInvasion.setNationFlag("Other");
+        sunsetInvasion.setNationFlag("Japan");
         sunsetInvasion.setDifficulty("Medium");
         achievementList.add(sunsetInvasion);
 
         Achievement revengeOfMontezuma = new Achievement("The Revenge of Montezuma",21,R.mipmap.ic_achievement_montezuma,"Core");
         revengeOfMontezuma.setNationFlag("Other");
         revengeOfMontezuma.setDifficulty("Medium");
+        revengeOfMontezuma.setSpecificOtherNation(new Nation("Mexico", R.mipmap.ic_flag_mexico_round,14));
         achievementList.add(revengeOfMontezuma);
 
         Achievement revolutionTriumphant = new Achievement("The Revolution Triumphant",22,R.mipmap.ic_achievement_revolution,"Core");
@@ -140,6 +150,7 @@ public class AchievementData {
         Achievement unitedNetherlands = new Achievement("United Netherlands",26,R.mipmap.ic_achievement_unitednetherlands,"Core");
         unitedNetherlands.setNationFlag("Other");
         unitedNetherlands.setDifficulty("Easy");
+        unitedNetherlands.setSpecificOtherNation(new Nation("Netherlands", R.mipmap.ic_flag_netherlands_round,7));
         achievementList.add(unitedNetherlands);
 
         Achievement viveLaFrance = new Achievement("Vive la France",27,R.mipmap.ic_achievement_vivalafrance,"Core");
