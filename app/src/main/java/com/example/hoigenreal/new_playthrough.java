@@ -20,7 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -236,19 +238,23 @@ public class new_playthrough extends Fragment {
                 public void onClick(View v) {
 
 
-                    // fail cases
+                    // fail cases - absurd levels of spaghetti code below
                     Boolean incompatibleDifficulties = ((new_playthrough.this.selectedAchievement.getDifficulty() != new_playthrough.this.selectedDifficulty.getDifficulty()) && selectedAchievement.getName()!="Any");
 
+
+                    Random randomObj = new Random();
                     if(incompatibleDifficulties){
                         Log.w("Generation Fail","GENERATION FAIL: incompatibleDifficulties. Setting Difficulty to match Achievement Difficulty");
                     }
-                    if(new_playthrough.this.selectedDifficulty.getName()=="Any"){ // this tree will decide everything. no need for another
-                        Random randomObj = new Random();
+                    // Given None
+                    // Given Achievement
+                    if(new_playthrough.this.selectedDifficulty.getName()=="Any" && new_playthrough.this.selectedNation.getNationName()=="Any"){ // this tree will decide everything. no need for another
+
                         int randomDifficultyPos = randomObj.nextInt(3)+1;
                         new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(randomDifficultyPos);
                         Log.i("Generating Random","Difficulty: "+new_playthrough.this.selectedDifficulty.getName());
 
-                        if(new_playthrough.this.selectedAchievement.getName()=="Any") {
+                        if(new_playthrough.this.selectedAchievement.getName()=="Any") { // Given none
 
                             if (new_playthrough.this.selectedNation.getNationName() == "Any") {
                                 List<Achievement> suitableRandomAchievements = new ArrayList<>();
@@ -274,7 +280,7 @@ public class new_playthrough extends Fragment {
                                     Log.wtf("Generating Random","IMPLEMENT GET OTHER SPECIFIC NATION");
                                     new_playthrough.this.selectedNation = new_playthrough.this.selectedAchievement.getSpecificOtherNation();
                                 }
-                                else {
+                                else { // Given Achievement
                                     for (Nation currNation : new_playthrough.this.listOfAllNations) {
                                         if (currNation.getNationName() == selectedNationString) {
                                             new_playthrough.this.selectedNation = currNation;
@@ -287,14 +293,141 @@ public class new_playthrough extends Fragment {
 
 
                             }
-                            else{
-
-                            }//get nation name, get suitable achievements based on that
                         }
-                        else{
+                    }
+
+                    // Given Nation
+                    // Given Achievement and Nation Name
+                    if(new_playthrough.this.selectedDifficulty.getName()=="Any" && new_playthrough.this.selectedNation.getNationName()!="Any"){
+                        if(new_playthrough.this.selectedAchievement.getName()=="Any"){ // Given Nation Name
+                            // get nation name
+                            // generate achievement for that nation
+                            // set difficulty according to drawn achievement
+
+                            List<Achievement> suitableAchievementList = new ArrayList<>();
+                            for(Achievement currAchievement : new_playthrough.this.listOfAllAchievements){
+                                if(currAchievement.getValidNationList().contains(new_playthrough.this.selectedNation.getNationName())
+                                ){
+                                    suitableAchievementList.add(currAchievement);
+                                }
+                            }
+                            if(suitableAchievementList.size()==0){
+                                Toast.makeText(getContext(),"No valid ach. for given fields. Setting diff. to Medium", Toast.LENGTH_SHORT).show();
+                                new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(2);
+
+                                for(Achievement currAchievement : new_playthrough.this.listOfAllAchievements){
+                                    if(currAchievement.getDifficulty() == new_playthrough.this.selectedDifficulty.getName()
+                                            && currAchievement.getValidNationList().contains(new_playthrough.this.selectedNation.getNationName())
+                                    ){
+                                        suitableAchievementList.add(currAchievement);
+                                    }
+                                }
+
+                            } // This shouldnt even happen.
+
+                            int randomAchievementPos = randomObj.nextInt(suitableAchievementList.size()-1)+1;
+                            new_playthrough.this.selectedAchievement = suitableAchievementList.get(randomAchievementPos);
+
+                            switch(new_playthrough.this.selectedAchievement.getDifficulty()){
+                                case("Easy"):
+                                    new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(1);
+                                    break;
+                                case("Medium"):
+                                    new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(2);
+                                    break;
+                                case("Hard"):
+                                    new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(3);
+                                    break;
+                            } // sets difficulty based on achievement
+
+                        }
+                        else{ // Given Achievement and Nation Name
+                            // set difficulty
+                            // ??
+                            // profit
+                            switch(new_playthrough.this.selectedAchievement.getDifficulty()){
+                                case("Easy"):
+                                    new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(1);
+                                    break;
+                                case("Medium"):
+                                    new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(2);
+                                    break;
+                                case("Hard"):
+                                    new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(3);
+                                    break;
+                            }
 
                         }
                     }
+
+                    // Given Nation and Difficulty
+                    if(new_playthrough.this.selectedAchievement.getName()=="Any" &&
+                        new_playthrough.this.selectedNation.getNationName()!="Any" &&
+                            new_playthrough.this.selectedDifficulty.getName()!="Any"
+                    ){
+                        List<Achievement> suitableAchievementList = new ArrayList<>();
+                        for(Achievement currAchievement: new_playthrough.this.listOfAllAchievements){
+                            if(currAchievement.getDifficulty() == new_playthrough.this.selectedDifficulty.getName()
+                            && currAchievement.getValidNationList().contains(new_playthrough.this.selectedNation.getNationName())
+                            ){
+                                suitableAchievementList.add(currAchievement);
+                            }
+                        }
+                        int randomAchievementPos = randomObj.nextInt(suitableAchievementList.size());
+                        new_playthrough.this.selectedAchievement = suitableAchievementList.get(randomAchievementPos);
+                    }
+                    // Given Difficulty
+                    if(new_playthrough.this.selectedDifficulty.getName()!="Any"
+                    && new_playthrough.this.selectedNation.getNationName() == "Any"
+                    && new_playthrough.this.selectedAchievement.getName()=="Any"
+                    ){
+                        // set achievement
+                        // set nation based on achievement nation list
+                        List<Achievement> suitableAchievementList = new ArrayList<>();
+                        for(Achievement currAchievement: new_playthrough.this.listOfAllAchievements){
+                            if(currAchievement.getDifficulty() == new_playthrough.this.selectedDifficulty.getName()){
+                                suitableAchievementList.add(currAchievement);
+                            }
+                        }
+                        int randomAchievementPos = randomObj.nextInt(suitableAchievementList.size());
+                        new_playthrough.this.selectedAchievement = suitableAchievementList.get(randomAchievementPos);
+                        Log.i("GENERATING RANDOM","ACHIEVEMENT: "+new_playthrough.this.selectedAchievement.getName());
+
+                    }
+                    // Given Achievement and Difficulty
+                    if(new_playthrough.this.selectedNation.getNationName()=="Any"){
+                        Log.i("GENERATING RANDOM","INSIDE GIVEN ACH AND DIFF");
+
+                        List<Nation> suitableNations = new ArrayList<>();
+                        for(Nation currNation : new_playthrough.this.listOfAllNations){
+
+                            if(new_playthrough.this.selectedAchievement.getValidNationList().contains(currNation.getNationName())){
+                                suitableNations.add(currNation);
+                            }
+                        }
+                        if(suitableNations.size()==0){
+                            Log.i("GENERATING RANDOM","INSIDE GIVEN ACH AND DIFF IF BRACKET");
+                            new_playthrough.this.selectedNation=new_playthrough.this.selectedAchievement.getSpecificOtherNation();
+                        }
+                        else {
+                            Log.i("GENERATING RANDOM","INSIDE GIVEN ACH AND DIFF ELSE BRACKET");
+                            int randomNationPos = randomObj.nextInt(suitableNations.size()); // other not in allNations
+                            new_playthrough.this.selectedNation = suitableNations.get(randomNationPos); // not good
+                        }
+
+                        switch(new_playthrough.this.selectedAchievement.getDifficulty()){
+                            case("Easy"):
+                                new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(1);
+                                break;
+                            case("Medium"):
+                                new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(2);
+                                break;
+                            case("Hard"):
+                                new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(3);
+                                break;
+                        } // sets difficulty based on achievement
+                    }
+
                     Log.d("On Click Button","Should Generate Button");
 
                     Nation finalSelectedNation = new_playthrough.this.selectedNation;
