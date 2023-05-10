@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,6 +43,8 @@ public class new_playthrough extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public boolean showDialog=true;
 
     public Nation selectedNation;
     public Achievement selectedAchievement;
@@ -95,6 +98,7 @@ public class new_playthrough extends Fragment {
         InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
         if(InflatedViewForFinding!=null) {
             View generateButton = this.InflatedViewForFinding.findViewById(R.id.submitGenerationButton);
+
             Spinner spinner_nations = this.InflatedViewForFinding.findViewById(R.id.spinner_nations);
             Spinner spinner_achievements = this.InflatedViewForFinding.findViewById(R.id.spinner_achievements);
             Spinner spinner_difficulties = this.InflatedViewForFinding.findViewById(R.id.spinner_difficulties);
@@ -236,7 +240,7 @@ public class new_playthrough extends Fragment {
             generateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    new_playthrough.this.showDialog=true;
 
                     // fail cases - absurd levels of spaghetti code below
                     Boolean incompatibleDifficulties = ((new_playthrough.this.selectedAchievement.getDifficulty() != new_playthrough.this.selectedDifficulty.getDifficulty()) && selectedAchievement.getName()!="Any");
@@ -277,7 +281,6 @@ public class new_playthrough extends Fragment {
                                 Log.i("Generating Random","FULL VALID NATION LIST: "+validNationList);
                                 Log.i("Generating Random","GENERATED NATION: "+selectedNationString);
                                 if(selectedNationString=="Other"){
-                                    Log.wtf("Generating Random","IMPLEMENT GET OTHER SPECIFIC NATION");
                                     new_playthrough.this.selectedNation = new_playthrough.this.selectedAchievement.getSpecificOtherNation();
                                 }
                                 else { // Given Achievement
@@ -373,6 +376,8 @@ public class new_playthrough extends Fragment {
                                 suitableAchievementList.add(currAchievement);
                             }
                         }
+                        // FIX THIS: Nation-difficulty pairs without achievement pool will crash this.
+                        // Roll back difficulty to medium to fix this.
                         int randomAchievementPos = randomObj.nextInt(suitableAchievementList.size());
                         new_playthrough.this.selectedAchievement = suitableAchievementList.get(randomAchievementPos);
                     }
@@ -440,6 +445,17 @@ public class new_playthrough extends Fragment {
                     generatedDialog.setCancelable(true);
                     generatedDialog.show();
 
+                    Button goBackButton = generatedDialog.findViewById(R.id.goBackButton);
+                    goBackButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d("CLICKED","CLICKED GO BACK");
+                            new_playthrough.this.showDialog = false;
+                            Log.d("Nav","Current Dialog state: "+new_playthrough.this.showDialog);
+                            generatedDialog.hide();
+                        }
+                    });
+
                     ImageView generatedNationImage = (ImageView) generatedDialog.findViewById(R.id.nationImageView);
                     TextView generatedNationText = (TextView) generatedDialog.findViewById(R.id.generatedNationText);
                     ImageView generatedAchievementImage = (ImageView) generatedDialog.findViewById(R.id.achievementImageView);
@@ -450,6 +466,7 @@ public class new_playthrough extends Fragment {
 
                     generatedAchievementImage.setImageResource(new_playthrough.this.selectedAchievement.getImageId());
                     generatedAchievementText.setText(new_playthrough.this.selectedAchievement.getName());
+
 
 
 
