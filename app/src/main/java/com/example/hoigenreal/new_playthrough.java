@@ -1,6 +1,8 @@
 package com.example.hoigenreal;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,6 +25,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +49,10 @@ public class new_playthrough extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public List<Generation> generatedAchievementList;
+
+    public static final String GENERATION_LIST = "generation list";
 
     public boolean showDialog=true;
 
@@ -95,6 +105,8 @@ public class new_playthrough extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        loadListData();
+
         InflatedViewForFinding = inflater.inflate(R.layout.fragment_new_playthrough, container, false);
         if(InflatedViewForFinding!=null) {
             View generateButton = this.InflatedViewForFinding.findViewById(R.id.submitGenerationButton);
@@ -446,12 +458,25 @@ public class new_playthrough extends Fragment {
                     generatedDialog.show();
 
                     Button goBackButton = generatedDialog.findViewById(R.id.goBackButton);
+                    Button saveButton = generatedDialog.findViewById(R.id.acceptButton);
+
                     goBackButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Log.d("CLICKED","CLICKED GO BACK");
                             new_playthrough.this.showDialog = false;
                             Log.d("Nav","Current Dialog state: "+new_playthrough.this.showDialog);
+                            generatedDialog.hide();
+                        }
+                    });
+
+                    saveButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            saveData(new Generation(0,new_playthrough.this.selectedNation,
+                                    new_playthrough.this.selectedAchievement,
+                                    new_playthrough.this.selectedDifficulty));
+                            Toast.makeText(getContext(),"Added Playthrough", Toast.LENGTH_SHORT).show();
                             generatedDialog.hide();
                         }
                     });
@@ -476,5 +501,30 @@ public class new_playthrough extends Fragment {
 
         }
         return InflatedViewForFinding;
+    }
+    private void saveData(Generation newGeneration){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        // Create Json by appending new data to loaded Json data
+        this.generatedAchievementList.add(newGeneration);
+        String json = gson.toJson(this.generatedAchievementList);
+        sharedPreferencesEditor.putString(GENERATION_LIST,json);
+        sharedPreferencesEditor.apply();
+
+
+    }
+    private void loadListData(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mySharedPreferences.getString(GENERATION_LIST,null);
+        Type type = new TypeToken<ArrayList<Generation>>() {}.getType();
+        generatedAchievementList = gson.fromJson(json,type);
+
+        if(generatedAchievementList==null){
+            generatedAchievementList = new ArrayList<>();
+        }
+        Log.i("GENERATION LIST","LIST item 1 nat:"+ generatedAchievementList.get(0).getGeneratedNation().getNationName());
+
     }
 }
