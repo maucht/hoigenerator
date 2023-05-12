@@ -39,7 +39,7 @@ public class home extends Fragment {
 
     private static final String GENERATION_LIST="generation list";
 
-    public List<Generation> generatedList;
+    public List<Generation> generatedList = null;
 
     private View InflatedViewForFinding;
 
@@ -79,21 +79,23 @@ public class home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         InflatedViewForFinding = inflater.inflate(R.layout.fragment_home, container, false);
-        loadListData();
+        this.loadListData();
 
         LinearLayout playthroughItemsLinearLayout = InflatedViewForFinding.findViewById(R.id.playthroughItemLinearLayout);
-        if(InflatedViewForFinding!=null){
-            for(Generation currGeneration : generatedList) {
-                Log.i("HOME FRAGMENT", "SHOULD RENDER PLAYTHROUGH ITEM");
-                View playthroughItem = getLayoutInflater().inflate(R.layout.playthrough_item, playthroughItemsLinearLayout, false);
+        if(InflatedViewForFinding!=null) {
+            if (generatedList.size() > 0) {
+                for (Generation currGeneration : generatedList) {
+                    Log.i("HOME FRAGMENT", "SHOULD RENDER PLAYTHROUGH ITEM");
+                    View playthroughItem = getLayoutInflater().inflate(R.layout.playthrough_item, playthroughItemsLinearLayout, false);
 
-                ImageView playthroughItemImage = playthroughItem.findViewById(R.id.item_image);
-                playthroughItemImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
+                    ImageView playthroughItemImage = playthroughItem.findViewById(R.id.item_image);
+                    playthroughItemImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
 
-                TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
-                playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
+                    TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
+                    playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
 
-                playthroughItemsLinearLayout.addView(playthroughItem);
+                    playthroughItemsLinearLayout.addView(playthroughItem);
+                }
             }
         }
         return InflatedViewForFinding;
@@ -108,6 +110,5 @@ public class home extends Fragment {
         if(generatedList==null){
             generatedList = new ArrayList<>();
         }
-        Log.i("GENERATION LIST","LIST item 1 nat:"+ generatedList.get(0).getGeneratedNation().getNationName());
     }
 }

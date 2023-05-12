@@ -526,7 +526,6 @@ public class new_playthrough extends Fragment {
         if(generatedAchievementList==null){
             generatedAchievementList = new ArrayList<>();
         }
-        Log.i("GENERATION LIST","LIST item 1 nat:"+ generatedAchievementList.get(0).getGeneratedNation().getNationName());
 
     }
 }
