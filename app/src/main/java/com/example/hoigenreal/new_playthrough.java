@@ -479,6 +479,9 @@ public class new_playthrough extends Fragment {
                                     new_playthrough.this.selectedDifficulty));
                             Toast.makeText(getContext(),"Added Playthrough", Toast.LENGTH_SHORT).show();
                             generatedDialog.hide();
+                            new_playthrough.this.selectedDifficulty=new_playthrough.this.listOfAllDifficulties.get(0);
+                            new_playthrough.this.selectedAchievement=new_playthrough.this.listOfAllAchievements.get(0);
+                            new_playthrough.this.selectedNation=new_playthrough.this.listOfAllNations.get(0);
                         }
                     });
 
