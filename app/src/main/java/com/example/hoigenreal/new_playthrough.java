@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -520,6 +521,7 @@ public class new_playthrough extends Fragment {
         String json = mySharedPreferences.getString(GENERATION_LIST,null);
         Type type = new TypeToken<ArrayList<Generation>>() {}.getType();
         generatedAchievementList = gson.fromJson(json,type);
+
 
         if(generatedAchievementList==null){
             generatedAchievementList = new ArrayList<>();

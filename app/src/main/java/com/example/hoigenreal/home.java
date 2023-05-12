@@ -1,12 +1,25 @@
 package com.example.hoigenreal;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +36,12 @@ public class home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private static final String GENERATION_LIST="generation list";
+
+    public List<Generation> generatedList;
+
+    private View InflatedViewForFinding;
 
     public home() {
         // Required empty public constructor
@@ -59,6 +78,36 @@ public class home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        InflatedViewForFinding = inflater.inflate(R.layout.fragment_home, container, false);
+        loadListData();
+
+        LinearLayout playthroughItemsLinearLayout = InflatedViewForFinding.findViewById(R.id.playthroughItemLinearLayout);
+        if(InflatedViewForFinding!=null){
+            for(Generation currGeneration : generatedList) {
+                Log.i("HOME FRAGMENT", "SHOULD RENDER PLAYTHROUGH ITEM");
+                View playthroughItem = getLayoutInflater().inflate(R.layout.playthrough_item, playthroughItemsLinearLayout, false);
+
+                ImageView playthroughItemImage = playthroughItem.findViewById(R.id.item_image);
+                playthroughItemImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
+
+                TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
+                playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
+
+                playthroughItemsLinearLayout.addView(playthroughItem);
+            }
+        }
+        return InflatedViewForFinding;
+    }
+    private void loadListData(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mySharedPreferences.getString(GENERATION_LIST,null);
+        Type type = new TypeToken<ArrayList<Generation>>() {}.getType();
+        generatedList = gson.fromJson(json,type);
+
+        if(generatedList==null){
+            generatedList = new ArrayList<>();
+        }
+        Log.i("GENERATION LIST","LIST item 1 nat:"+ generatedList.get(0).getGeneratedNation().getNationName());
     }
 }
