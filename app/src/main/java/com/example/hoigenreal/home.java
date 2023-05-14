@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -91,6 +93,7 @@ public class home extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Log.d("DELET","SHOULD NAVIGATE TO COMPLETED FRAGMENT");
+                    home.this.switchActiveToCompletedFragment();
                 }
             });
 
@@ -140,6 +143,11 @@ public class home extends Fragment {
             }
         }
         return InflatedViewForFinding;
+    }
+    private void switchActiveToCompletedFragment(){
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame_layout,new completed())
+                .commit();
     }
     private void removeGenerationData(int genId){
         Generation genToRemove;
