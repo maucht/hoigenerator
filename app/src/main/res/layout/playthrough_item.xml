@@ -29,6 +29,18 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/item_achievement_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/nunitosans_bold"
+        android:text="TextView"
+        android:textColor="#BABABA"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/item_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +50,7 @@
         android:textSize="16sp" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/item_trash_button"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
@@ -48,14 +60,26 @@
         app:srcCompat="@drawable/ic_icon_trash" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/item_complete_button"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="60dp"
-        android:backgroundTint="#EC5959"
-        app:srcCompat="@drawable/ic_icon_trash" />
+        android:backgroundTint="#59EC5B"
+        app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
+
+    <ImageView
+        android:id="@+id/item_achievement_image"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_achievement_bearer_round"
+        app:srcCompat="@mipmap/ic_achievement_bearer_round" />
 
 </RelativeLayout>

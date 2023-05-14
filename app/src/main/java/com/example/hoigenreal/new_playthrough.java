@@ -474,7 +474,7 @@ public class new_playthrough extends Fragment {
                     saveButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            saveData(new Generation(0,new_playthrough.this.selectedNation,
+                            saveData(new Generation(new_playthrough.this.generatedAchievementList.size()+ randomObj.nextInt(100000),new_playthrough.this.selectedNation,
                                     new_playthrough.this.selectedAchievement,
                                     new_playthrough.this.selectedDifficulty));
                             Toast.makeText(getContext(),"Added Playthrough", Toast.LENGTH_SHORT).show();

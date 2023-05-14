@@ -87,6 +87,7 @@ public class home extends Fragment {
                 for (Generation currGeneration : generatedList) {
                     Log.i("HOME FRAGMENT", "SHOULD RENDER PLAYTHROUGH ITEM");
                     View playthroughItem = getLayoutInflater().inflate(R.layout.playthrough_item, playthroughItemsLinearLayout, false);
+                    playthroughItem.setTag(R.id.gen_tag_key,currGeneration.getId());
 
                     ImageView playthroughItemImage = playthroughItem.findViewById(R.id.item_image);
                     playthroughItemImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
@@ -94,11 +95,55 @@ public class home extends Fragment {
                     TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
                     playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
 
+                    View playthroughItemTrashButton = playthroughItem.findViewById(R.id.item_trash_button);
+                    playthroughItemTrashButton.setTag(R.id.gen_tag_key,currGeneration.getId());
+                    playthroughItemTrashButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d("DLEETETHIS","YOU CLICKED TRASH ICON");
+                            playthroughItem.setVisibility(playthroughItem.GONE);
+                            home.this.removeGenerationData((int) v.getTag(R.id.gen_tag_key));
+                        }
+                    });
+
                     playthroughItemsLinearLayout.addView(playthroughItem);
                 }
             }
         }
         return InflatedViewForFinding;
+    }
+    private void removeGenerationData(int genId){
+        Generation genToRemove;
+        int index = 0;
+        for(Generation currGen : this.generatedList){
+            if(currGen.getId() == genId){
+                genToRemove = currGen;
+                break;
+            }
+            index+=1;
+        }
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        this.generatedList.remove(index);
+        String json = gson.toJson(this.generatedList);
+        sharedPreferencesEditor.putString(GENERATION_LIST,json);
+        sharedPreferencesEditor.apply();
+        home.this.loadListData();
+
+    }
+    private void saveData(Generation newGeneration){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        // Create Json by appending new data to loaded Json data
+        this.generatedList.add(newGeneration);
+        String json = gson.toJson(this.generatedList);
+        sharedPreferencesEditor.putString(GENERATION_LIST,json);
+        sharedPreferencesEditor.apply();
+
+
+
     }
     private void loadListData(){
         SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
