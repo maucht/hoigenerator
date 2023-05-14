@@ -6,9 +6,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -75,6 +79,7 @@ public class completed extends Fragment {
         // Inflate the layout for this fragment
         InflatedViewForViewing = inflater.inflate(R.layout.fragment_completed, container, false);
         completed.this.loadCompletedListData();
+        LinearLayout playthroughItemsLinearLayout = InflatedViewForViewing.findViewById(R.id.playthroughItemLinearLayout);
         View activeHeader = InflatedViewForViewing.findViewById(R.id.activeHeader);
         activeHeader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +88,32 @@ public class completed extends Fragment {
             }
         });
         if(InflatedViewForViewing!=null){
+            if (completedList.size() > 0) {
+                for (Generation currGeneration : completedList) {
+                    View playthroughItem = getLayoutInflater().inflate(R.layout.playthrough_item, playthroughItemsLinearLayout, false);
+                    playthroughItem.setTag(R.id.gen_tag_key,currGeneration.getId());
 
+                    ImageView playthroughItemImage = playthroughItem.findViewById(R.id.item_image);
+                    playthroughItemImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
+
+                    TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
+                    playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
+
+                    TextView playthroughItemAchievementText = playthroughItem.findViewById(R.id.item_achievement_title);
+                    playthroughItemAchievementText.setText(currGeneration.getGeneratedAchievement().getName());
+
+                    ImageView playthroughItemAchievementImage = playthroughItem.findViewById(R.id.item_achievement_image);
+                    playthroughItemAchievementImage.setImageResource(currGeneration.getGeneratedAchievement().getImageId());
+
+                    View playthroughItemTrashButton = playthroughItem.findViewById(R.id.item_trash_button);
+                    playthroughItemTrashButton.setVisibility(playthroughItemTrashButton.GONE);
+
+                    View playthroughItemCompleteButton = playthroughItem.findViewById(R.id.item_complete_button);
+                    playthroughItemCompleteButton.setVisibility(playthroughItemCompleteButton.GONE);
+
+                    playthroughItemsLinearLayout.addView(playthroughItem);
+                }
+            }
         }
         return InflatedViewForViewing;
     }
