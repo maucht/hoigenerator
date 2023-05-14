@@ -38,8 +38,10 @@ public class home extends Fragment {
     private String mParam2;
 
     private static final String GENERATION_LIST="generation list";
+    private static final String COMPLETED_LIST = "completed list";
 
     public List<Generation> generatedList = null;
+    public List<Generation> completedList = null;
 
     private View InflatedViewForFinding;
 
@@ -80,9 +82,18 @@ public class home extends Fragment {
         // Inflate the layout for this fragment
         InflatedViewForFinding = inflater.inflate(R.layout.fragment_home, container, false);
         this.loadListData();
+        this.loadCompletedListData();
 
         LinearLayout playthroughItemsLinearLayout = InflatedViewForFinding.findViewById(R.id.playthroughItemLinearLayout);
         if(InflatedViewForFinding!=null) {
+            View completedHeaderText = InflatedViewForFinding.findViewById(R.id.completedHeader);
+            completedHeaderText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("DELET","SHOULD NAVIGATE TO COMPLETED FRAGMENT");
+                }
+            });
+
             if (generatedList.size() > 0) {
                 for (Generation currGeneration : generatedList) {
                     Log.i("HOME FRAGMENT", "SHOULD RENDER PLAYTHROUGH ITEM");
@@ -95,6 +106,12 @@ public class home extends Fragment {
                     TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
                     playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
 
+                    TextView playthroughItemAchievementText = playthroughItem.findViewById(R.id.item_achievement_title);
+                    playthroughItemAchievementText.setText(currGeneration.getGeneratedAchievement().getName());
+
+                    ImageView playthroughItemAchievementImage = playthroughItem.findViewById(R.id.item_achievement_image);
+                    playthroughItemAchievementImage.setImageResource(currGeneration.getGeneratedAchievement().getImageId());
+
                     View playthroughItemTrashButton = playthroughItem.findViewById(R.id.item_trash_button);
                     playthroughItemTrashButton.setTag(R.id.gen_tag_key,currGeneration.getId());
                     playthroughItemTrashButton.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +119,18 @@ public class home extends Fragment {
                         public void onClick(View v) {
                             Log.d("DLEETETHIS","YOU CLICKED TRASH ICON");
                             playthroughItem.setVisibility(playthroughItem.GONE);
+                            home.this.removeGenerationData((int) v.getTag(R.id.gen_tag_key));
+                        }
+                    });
+
+                    View playthroughItemCompleteButton = playthroughItem.findViewById(R.id.item_complete_button);
+                    playthroughItemCompleteButton.setTag(R.id.gen_tag_key,currGeneration.getId());
+                    playthroughItemCompleteButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d("DELETETHIS","YOU CLICKED COMPLETE BUTTON");
+                            playthroughItem.setVisibility(playthroughItem.GONE);
+                            home.this.addCompletedData((int) v.getTag(R.id.gen_tag_key));
                             home.this.removeGenerationData((int) v.getTag(R.id.gen_tag_key));
                         }
                     });
@@ -132,15 +161,25 @@ public class home extends Fragment {
         home.this.loadListData();
 
     }
-    private void saveData(Generation newGeneration){
+    private void addCompletedData(int id){
+        Generation newGeneration = null;
+
+        for(Generation currGen : this.generatedList){
+            if(currGen.getId() == id){
+                newGeneration = currGen;
+            }
+        }
+
         SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
         Gson gson = new Gson();
         // Create Json by appending new data to loaded Json data
-        this.generatedList.add(newGeneration);
-        String json = gson.toJson(this.generatedList);
-        sharedPreferencesEditor.putString(GENERATION_LIST,json);
+        this.completedList.add(newGeneration); // change to completed list
+        String json = gson.toJson(this.completedList); // change
+        sharedPreferencesEditor.putString(COMPLETED_LIST,json);
         sharedPreferencesEditor.apply();
+        home.this.loadListData();
+        home.this.loadCompletedListData();
 
 
 
@@ -154,6 +193,17 @@ public class home extends Fragment {
 
         if(generatedList==null){
             generatedList = new ArrayList<>();
+        }
+    }
+    private void loadCompletedListData(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mySharedPreferences.getString(COMPLETED_LIST,null);
+        Type type = new TypeToken<ArrayList<Generation>>() {}.getType();
+        completedList = gson.fromJson(json,type);
+
+        if(completedList==null){
+            completedList = new ArrayList<>();
         }
     }
 }
