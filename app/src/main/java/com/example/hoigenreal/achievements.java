@@ -1,12 +1,26 @@
 package com.example.hoigenreal;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +37,15 @@ public class achievements extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View InflatedViewForFinding;
+
+    private static final String COMPLETED_LIST = "completed list";
+    private List<Generation> completedList = null;
+
+    private List<Achievement> listOfAllAchievements = AchievementData.getAllAchievements();
+
+
 
     public achievements() {
         // Required empty public constructor
@@ -58,7 +81,42 @@ public class achievements extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_achievements, container, false);
+        achievements.this.loadCompletedListData();
+        InflatedViewForFinding =  inflater.inflate(R.layout.fragment_achievements, container, false);
+
+        LinearLayout parentLayout = InflatedViewForFinding.findViewById(R.id.achievementItemLinearLayout);
+        if(InflatedViewForFinding!=null){
+            for(Achievement currAch : listOfAllAchievements){
+                View achievementView = getLayoutInflater().inflate(R.layout.achievement_item,parentLayout,false);
+
+                ImageView achievementIcon = achievementView.findViewById(R.id.achievement_image);
+                achievementIcon.setImageResource(currAch.getImageId());
+
+                TextView achievementText = achievementView.findViewById(R.id.achievement_title);
+                achievementText.setText(currAch.getName());
+                if(completedList.contains(currAch)){ // this is fucked because its checking a list of gens for ach
+                    // create a new sharedpreference for completed achievements and check that instead
+                    Log.d("COLOOOOR","SHOULD SET COLOR RED FOR ACH");
+                    achievementView.setBackgroundColor(Color.RED);
+                }
+                parentLayout.addView(achievementView);
+            }
+        }
+        return InflatedViewForFinding;
+    }
+
+    private void calculateEarnedAchievements(){
+        // Use a for loop that iterates through completedList and adds achievement to earnedAchievement list if not in hashmap already
+    }
+    private void loadCompletedListData(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mySharedPreferences.getString(COMPLETED_LIST,null);
+        Type type = new TypeToken<ArrayList<Generation>>() {}.getType();
+        completedList = gson.fromJson(json,type);
+
+        if(completedList==null){
+            completedList = new ArrayList<>();
+        }
     }
 }

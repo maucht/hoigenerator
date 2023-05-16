@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/item_image"
+        android:id="@+id/achievement_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
 
@@ -18,11 +18,11 @@
         android:src="@mipmap/ic_flag_america_round" />
 
     <TextView
-        android:id="@+id/item_title"
+        android:id="@+id/achievement_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/item_image"
+        android:layout_toEndOf="@id/achievement_image"
         android:fontFamily="@font/nunitosans_bold"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -44,8 +44,8 @@
         android:id="@+id/item_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_title"
-        android:layout_toEndOf="@id/item_image"
+        android:layout_below="@id/achievement_title"
+        android:layout_toEndOf="@id/achievement_image"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp" />
 

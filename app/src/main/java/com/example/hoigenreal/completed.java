@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,7 @@ public class completed extends Fragment {
         // Inflate the layout for this fragment
         InflatedViewForViewing = inflater.inflate(R.layout.fragment_completed, container, false);
         completed.this.loadCompletedListData();
-        LinearLayout playthroughItemsLinearLayout = InflatedViewForViewing.findViewById(R.id.playthroughItemLinearLayout);
+        LinearLayout playthroughItemsLinearLayout = InflatedViewForViewing.findViewById(R.id.achievementItemLinearLayout);
         View activeHeader = InflatedViewForViewing.findViewById(R.id.activeHeader);
         activeHeader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +92,10 @@ public class completed extends Fragment {
                     View playthroughItem = getLayoutInflater().inflate(R.layout.playthrough_item, playthroughItemsLinearLayout, false);
                     playthroughItem.setTag(R.id.gen_tag_key,currGeneration.getId());
 
-                    ImageView playthroughItemImage = playthroughItem.findViewById(R.id.item_image);
+                    ImageView playthroughItemImage = playthroughItem.findViewById(R.id.achievement_image);
                     playthroughItemImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
 
-                    TextView playthroughItemNationText = playthroughItem.findViewById(R.id.item_title);
+                    TextView playthroughItemNationText = playthroughItem.findViewById(R.id.achievement_title);
                     playthroughItemNationText.setText(currGeneration.getGeneratedNation().getNationName());
 
                     TextView playthroughItemAchievementText = playthroughItem.findViewById(R.id.item_achievement_title);
