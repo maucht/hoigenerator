@@ -39,9 +39,11 @@ public class home extends Fragment {
 
     private static final String GENERATION_LIST="generation list";
     private static final String COMPLETED_LIST = "completed list";
+    private static final String COMPLETED_ACHIEVEMENT_LIST = "completed achievement list";
 
     public List<Generation> generatedList = null;
     public List<Generation> completedList = null;
+    public List<Achievement> completedAchievementList = null;
 
     private View InflatedViewForFinding;
 
@@ -184,6 +186,7 @@ public class home extends Fragment {
         String json = gson.toJson(this.completedList); // change
         sharedPreferencesEditor.putString(COMPLETED_LIST,json);
         sharedPreferencesEditor.apply();
+        home.this.calculateCompletedAchievementListData();
         home.this.loadListData();
         home.this.loadCompletedListData();
 
@@ -211,5 +214,20 @@ public class home extends Fragment {
         if(completedList==null){
             completedList = new ArrayList<>();
         }
+    }
+    private void calculateCompletedAchievementListData(){
+        List<Achievement> completedAchievementList = new ArrayList<>();
+        for(Generation currGen : completedList){
+            if(!completedAchievementList.contains(currGen.getGeneratedAchievement())){
+                completedAchievementList.add(currGen.getGeneratedAchievement());
+            }
+        }
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+
+        String json = gson.toJson(completedAchievementList);
+        sharedPreferencesEditor.putString(COMPLETED_ACHIEVEMENT_LIST,json);
+        sharedPreferencesEditor.apply();
     }
 }

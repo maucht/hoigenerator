@@ -40,6 +40,9 @@ public class achievements extends Fragment {
 
     private View InflatedViewForFinding;
 
+    private static final String COMPLETED_ACHIEVEMENT_LIST = "completed achievement list";
+    private List<Achievement> completedAchievementList = new ArrayList<>();
+
     private static final String COMPLETED_LIST = "completed list";
     private List<Generation> completedList = null;
 
@@ -87,19 +90,22 @@ public class achievements extends Fragment {
         LinearLayout parentLayout = InflatedViewForFinding.findViewById(R.id.achievementItemLinearLayout);
         if(InflatedViewForFinding!=null){
             for(Achievement currAch : listOfAllAchievements){
-                View achievementView = getLayoutInflater().inflate(R.layout.achievement_item,parentLayout,false);
+                if(currAch.getName()!="Any") {
+                    View achievementView = getLayoutInflater().inflate(R.layout.achievement_item, parentLayout, false);
 
-                ImageView achievementIcon = achievementView.findViewById(R.id.achievement_image);
-                achievementIcon.setImageResource(currAch.getImageId());
+                    ImageView achievementIcon = achievementView.findViewById(R.id.achievement_image);
+                    achievementIcon.setImageResource(currAch.getImageId());
 
-                TextView achievementText = achievementView.findViewById(R.id.achievement_title);
-                achievementText.setText(currAch.getName());
-                if(completedList.contains(currAch)){ // this is fucked because its checking a list of gens for ach
-                    // create a new sharedpreference for completed achievements and check that instead
-                    Log.d("COLOOOOR","SHOULD SET COLOR RED FOR ACH");
-                    achievementView.setBackgroundColor(Color.RED);
+                    TextView achievementText = achievementView.findViewById(R.id.achievement_title);
+                    achievementText.setText(currAch.getName());
+                    if (completedAchievementList.contains(currAch)) { // this is fucked because its checking a list of gens for ach
+                        // create a new sharedpreference for completed achievements and check that instead
+                        // otherwise, the background color change works.
+                        Log.d("COLOOOOR", "SHOULD SET COLOR RED FOR ACH");
+                        achievementView.setBackgroundColor(Color.RED);
+                    }
+                    parentLayout.addView(achievementView);
                 }
-                parentLayout.addView(achievementView);
             }
         }
         return InflatedViewForFinding;
@@ -117,6 +123,17 @@ public class achievements extends Fragment {
 
         if(completedList==null){
             completedList = new ArrayList<>();
+        }
+    }
+    private void loadCompletedAchievementListData(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mySharedPreferences.getString(COMPLETED_ACHIEVEMENT_LIST,null);
+        Type type = new TypeToken<ArrayList<Achievement>>() {}.getType();
+        completedAchievementList = gson.fromJson(json,type);
+
+        if(completedAchievementList==null){
+            completedAchievementList = new ArrayList<>();
         }
     }
 }
