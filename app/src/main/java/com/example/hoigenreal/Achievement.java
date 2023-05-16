@@ -130,6 +130,13 @@ public class Achievement {
         return this.specificOtherNation;
     }
 
+    public List<String> getInstructions(){
+        return this.instructions;
+    }
+    public void setInstructions(List<String> newInstructions){
+        this.instructions = newInstructions;
+    }
+
     private String name;
     private int id;
     private int imageId;
@@ -148,5 +155,7 @@ public class Achievement {
     public Nation specificOtherNation;
 
     public String[] otherArray=null;
+
+    public List<String> instructions;
 
 }
