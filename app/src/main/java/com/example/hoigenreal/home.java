@@ -175,6 +175,7 @@ public class home extends Fragment {
         for(Generation currGen : this.generatedList){
             if(currGen.getId() == id){
                 newGeneration = currGen;
+                break;
             }
         }
 
@@ -218,6 +219,7 @@ public class home extends Fragment {
     private void calculateCompletedAchievementListData(){
         List<Achievement> completedAchievementList = new ArrayList<>();
         for(Generation currGen : completedList){
+            Log.d("FUCK","CURRENT GEN IN CALC: "+currGen.getGeneratedNation().getNationName());
             if(!completedAchievementList.contains(currGen.getGeneratedAchievement())){
                 completedAchievementList.add(currGen.getGeneratedAchievement());
             }

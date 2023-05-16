@@ -47,7 +47,7 @@ public class achievements extends Fragment {
     private List<Generation> completedList = null;
 
     private List<Achievement> listOfAllAchievements = AchievementData.getAllAchievements();
-
+    private List<String> listOfCompletedAchievementNames = new ArrayList<>();
 
 
     public achievements() {
@@ -85,9 +85,12 @@ public class achievements extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         achievements.this.loadCompletedListData();
+        achievements.this.loadCompletedAchievementListData();
+        achievements.this.calculateAchievementNameList();
         InflatedViewForFinding =  inflater.inflate(R.layout.fragment_achievements, container, false);
 
         LinearLayout parentLayout = InflatedViewForFinding.findViewById(R.id.achievementItemLinearLayout);
+        Log.d("YUHHHHHHH","FULL COMP ACH LIST: "+completedAchievementList.get(0).getName());
         if(InflatedViewForFinding!=null){
             for(Achievement currAch : listOfAllAchievements){
                 if(currAch.getName()!="Any") {
@@ -98,11 +101,14 @@ public class achievements extends Fragment {
 
                     TextView achievementText = achievementView.findViewById(R.id.achievement_title);
                     achievementText.setText(currAch.getName());
-                    if (completedAchievementList.contains(currAch)) { // this is fucked because its checking a list of gens for ach
-                        // create a new sharedpreference for completed achievements and check that instead
+                    if (listOfCompletedAchievementNames.contains(currAch.getName())) { // this is fucked because they are technically
+                        // different objects. maybe overload the == operator or do something like comp ach names
                         // otherwise, the background color change works.
                         Log.d("COLOOOOR", "SHOULD SET COLOR RED FOR ACH");
-                        achievementView.setBackgroundColor(Color.RED);
+                        achievementView.setBackgroundColor(Color.parseColor("#76b877"));
+                        // #59EC5B
+                        // #96eb98
+                        //
                     }
                     parentLayout.addView(achievementView);
                 }
@@ -111,8 +117,14 @@ public class achievements extends Fragment {
         return InflatedViewForFinding;
     }
 
-    private void calculateEarnedAchievements(){
-        // Use a for loop that iterates through completedList and adds achievement to earnedAchievement list if not in hashmap already
+    private void calculateAchievementNameList(){
+        for(Achievement currAch : completedAchievementList){
+            Log.d("Curr","Currach: "+currAch.getName());
+            if(!listOfCompletedAchievementNames.contains(currAch.getName())) {
+                Log.d("YUHH", "ADDING TO NAME LIST: " + currAch.getName());
+                listOfCompletedAchievementNames.add(currAch.getName());
+            }
+        }
     }
     private void loadCompletedListData(){
         SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
