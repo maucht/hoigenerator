@@ -90,7 +90,6 @@ public class achievements extends Fragment {
         InflatedViewForFinding =  inflater.inflate(R.layout.fragment_achievements, container, false);
 
         LinearLayout parentLayout = InflatedViewForFinding.findViewById(R.id.achievementItemLinearLayout);
-        Log.d("YUHHHHHHH","FULL COMP ACH LIST: "+completedAchievementList.get(0).getName());
         if(InflatedViewForFinding!=null){
             for(Achievement currAch : listOfAllAchievements){
                 if(currAch.getName()!="Any") {
@@ -101,10 +100,9 @@ public class achievements extends Fragment {
 
                     TextView achievementText = achievementView.findViewById(R.id.achievement_title);
                     achievementText.setText(currAch.getName());
-                    if (listOfCompletedAchievementNames.contains(currAch.getName())) { // this is fucked because they are technically
-                        // different objects. maybe overload the == operator or do something like comp ach names
-                        // otherwise, the background color change works.
-                        Log.d("COLOOOOR", "SHOULD SET COLOR RED FOR ACH");
+
+                    if (listOfCompletedAchievementNames.size()>0 &&
+                            listOfCompletedAchievementNames.contains(currAch.getName())) { // This is fucked when storage is cleared
                         achievementView.setBackgroundColor(Color.parseColor("#76b877"));
                         // #59EC5B
                         // #96eb98
