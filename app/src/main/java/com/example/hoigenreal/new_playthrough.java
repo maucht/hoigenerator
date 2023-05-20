@@ -446,6 +446,23 @@ public class new_playthrough extends Fragment {
                         } // sets difficulty based on achievement
                     }
 
+                    try{
+                        String tryNationName = new_playthrough.this.selectedNation.getNationName();
+                    }
+                    catch(Exception e){
+                        Log.wtf("CAUGHT EXCEPTION","CAUGHT: " + e.getMessage() + " --- FINDING ACCEPTABLE NATION");
+                        if(new_playthrough.this.selectedNation.getNationName() == "Other"){
+                            new_playthrough.this.selectedNation = new_playthrough.this.selectedAchievement.getSpecificOtherNation();
+                        }
+                        else{
+                            for(Nation currNation : new_playthrough.this.listOfAllNations){
+                                if(currNation.getNationName() == new_playthrough.this.selectedAchievement.getValidNationList().get(0)){
+                                    new_playthrough.this.selectedNation = currNation;
+                                }
+                            }
+                        }
+                    }
+
                     Log.d("On Click Button","Should Generate Button");
 
                     Nation finalSelectedNation = new_playthrough.this.selectedNation;

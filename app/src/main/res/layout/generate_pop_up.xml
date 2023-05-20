@@ -38,14 +38,21 @@
             android:backgroundTint="@color/md_theme_dark_tertiary"
             android:text="Go Back" />
 
-        <LinearLayout
-            android:id="@+id/instruction_box"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_alignParentBottom="false"
-            android:layout_marginTop="150dp"
-            android:orientation="vertical"
-            android:padding="30dp"></LinearLayout>
+            android:layout_height="250dp"
+            android:layout_marginTop="150dp">
+
+            <LinearLayout
+                android:id="@+id/instruction_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+            </LinearLayout>
+        </ScrollView>
 
         <LinearLayout
             android:id="@+id/headerGeneratedLinear"
