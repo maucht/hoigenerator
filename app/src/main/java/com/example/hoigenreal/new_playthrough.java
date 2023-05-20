@@ -260,6 +260,12 @@ public class new_playthrough extends Fragment {
 
 
                     Random randomObj = new Random();
+
+                    Nation savePriorToGenerationNation = new_playthrough.this.selectedNation;
+                    Achievement savePriorToGenerationAchievement = new_playthrough.this.selectedAchievement;
+                    Difficulty savePriorToGenerationDifficulty = new_playthrough.this.selectedDifficulty;
+
+
                     if(incompatibleDifficulties){
                         Log.w("Generation Fail","GENERATION FAIL: incompatibleDifficulties. Setting Difficulty to match Achievement Difficulty");
                     }
@@ -489,6 +495,9 @@ public class new_playthrough extends Fragment {
                             Log.d("CLICKED","CLICKED GO BACK");
                             new_playthrough.this.showDialog = false;
                             generatedDialog.hide();
+                            new_playthrough.this.selectedNation = savePriorToGenerationNation;
+                            new_playthrough.this.selectedAchievement = savePriorToGenerationAchievement;
+                            new_playthrough.this.selectedDifficulty = savePriorToGenerationDifficulty;
                         }
                     });
 
