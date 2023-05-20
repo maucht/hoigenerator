@@ -133,7 +133,15 @@ public class Achievement {
     public List<String> getInstructions(){
         return this.instructions;
     }
-    public void setInstructions(List<String> newInstructions){
+    public void addInstruction(String newInstruction){
+        this.instructions.add(newInstruction);
+    }
+    public void addListOfInstructions(List<String> instructionList){
+        for(String currString : instructionList){
+            this.instructions.add(currString);
+        }
+    }
+    public void setInstructions(List<String> newInstructions){ // yeah fuck this method. dont use it
         this.instructions = newInstructions;
     }
 
@@ -156,6 +164,6 @@ public class Achievement {
 
     public String[] otherArray=null;
 
-    public List<String> instructions;
+    public List<String> instructions = new ArrayList<>();
 
 }

@@ -12,7 +12,7 @@ public class AchievementData {
         blankAchievement.setNationFlag("Any");
         blankAchievement.setDifficulty("Easy");
         reusableList.add("Any");
-        blankAchievement.setInstructions(reusableList);
+        blankAchievement.addListOfInstructions(reusableList);
         achievementList.add(blankAchievement);
         reusableList.clear();
 
@@ -24,7 +24,7 @@ public class AchievementData {
         reusableList.add("At war with Italy");
         reusableList.add("Controls a central Italian state and Hamadan");
         reusableList.add("Completed Focus Artillery Modernization");
-        bearerOfArtillery.setInstructions(reusableList);
+        bearerOfArtillery.addListOfInstructions(reusableList);
         bearerOfArtillery.setSpecificOtherNation(new Nation("Poland", R.mipmap.ic_flag_poland_round,7));
         achievementList.add(bearerOfArtillery);
         reusableList.clear();
@@ -35,7 +35,7 @@ public class AchievementData {
         reusableList.add("Has completed focus Strengthen the Little Entente");
         reusableList.add("Be faction leader");
         reusableList.add("Every German state controlled by you or your allies");
-        bigEntente.setInstructions(reusableList);
+        bigEntente.addListOfInstructions(reusableList);
         achievementList.add(bigEntente);
         reusableList.clear();
 
@@ -44,7 +44,7 @@ public class AchievementData {
         canadaFirst.setDifficulty("Easy");
         reusableList.add("In faction with Germany");
         canadaFirst.setSpecificOtherNation(new Nation("Canada", R.mipmap.ic_flag_canada_round,8));
-        canadaFirst.setInstructions(reusableList);
+        canadaFirst.addListOfInstructions(reusableList);
         achievementList.add(canadaFirst);
         reusableList.clear();
 
@@ -52,7 +52,7 @@ public class AchievementData {
         destroyerOfWorlds.setNationFlag("Any");
         destroyerOfWorlds.setDifficulty("Easy");
         reusableList.add("Use a nuke");
-        destroyerOfWorlds.setInstructions(reusableList);
+        destroyerOfWorlds.addListOfInstructions(reusableList);
         achievementList.add(destroyerOfWorlds);
         reusableList.clear();
 
@@ -61,7 +61,7 @@ public class AchievementData {
         duceNukedEm.setDifficulty("Medium");
         reusableList.add("Nuke Los Angeles");
         reusableList.add("Fascist");
-        duceNukedEm.setInstructions(reusableList);
+        duceNukedEm.addListOfInstructions(reusableList);
         achievementList.add(duceNukedEm);
 
         Achievement forgeOfVictory = new Achievement("Forge of Victory",6,R.mipmap.ic_achievement_forge,"Core");
@@ -69,7 +69,7 @@ public class AchievementData {
         forgeOfVictory.setDifficulty("Easy");
         reusableList.add("Have 50 factories");
         forgeOfVictory.setSpecificOtherNation(new Nation("Belgium", R.mipmap.ic_flag_belgium_round,9));
-        forgeOfVictory.setInstructions(reusableList);
+        forgeOfVictory.addListOfInstructions(reusableList);
         achievementList.add(forgeOfVictory);
         reusableList.clear();
 
@@ -77,7 +77,7 @@ public class AchievementData {
         friendInNeed.setNationFlag("Any");
         friendInNeed.setDifficulty("Easy");
         reusableList.add("Join a faction");
-        friendInNeed.setInstructions(reusableList);
+        friendInNeed.addListOfInstructions(reusableList);
         achievementList.add(friendInNeed);
         reusableList.clear();
 
@@ -85,7 +85,7 @@ public class AchievementData {
         masterOfWar.setNationFlag("Any");
         masterOfWar.setDifficulty("Medium");
         reusableList.add("Fully research either a land, naval, or air doctrine tree");
-        masterOfWar.setInstructions(reusableList);
+        masterOfWar.addListOfInstructions(reusableList);
         achievementList.add(masterOfWar);
         reusableList.clear();
 
@@ -94,7 +94,7 @@ public class AchievementData {
         medPlutonium.setDifficulty("Medium");
         reusableList.add("Nuke Denmark");
         medPlutonium.setSpecificOtherNation(new Nation("Sweden", R.mipmap.ic_flag_sweden_round,10));
-        medPlutonium.setInstructions(reusableList);
+        medPlutonium.addListOfInstructions(reusableList);
         achievementList.add(medPlutonium);
         reusableList.clear();
 
@@ -103,7 +103,7 @@ public class AchievementData {
         mineIsBigger.setDifficulty("Easy");
         reusableList.add("Be faction leader");
         reusableList.add("Have 20 members in your faction");
-        mineIsBigger.setInstructions(reusableList);
+        mineIsBigger.addListOfInstructions(reusableList);
         achievementList.add(mineIsBigger);
         reusableList.clear();
 
@@ -111,7 +111,7 @@ public class AchievementData {
         newWorldOrder.setNationFlag("Any");
         newWorldOrder.setDifficulty("Medium");
         reusableList.add("All existing nations are fascist");
-        newWorldOrder.setInstructions(reusableList);
+        newWorldOrder.addListOfInstructions(reusableList);
         achievementList.add(newWorldOrder);
         reusableList.clear();
 
@@ -120,7 +120,7 @@ public class AchievementData {
         noCountryForOldMen.setDifficulty("Easy");
         reusableList.add("Scraping the Barrel as Conscription law");
         reusableList.add("Reach 0 manpower");
-        noCountryForOldMen.setInstructions(reusableList);
+        noCountryForOldMen.addListOfInstructions(reusableList);
         achievementList.add(noCountryForOldMen);
         reusableList.clear();
 
@@ -132,7 +132,7 @@ public class AchievementData {
         reusableList.add("Control Ile de France");
         reusableList.add("Fascist");
         nobodyExpects.setSpecificOtherNation(new Nation("Spain", R.mipmap.ic_flag_nationalist_spain_round,11));
-        nobodyExpects.setInstructions(reusableList);
+        nobodyExpects.addListOfInstructions(reusableList);
         achievementList.add(nobodyExpects);
         reusableList.clear();
 
@@ -142,7 +142,7 @@ public class AchievementData {
         reusableList.add("Be faction leader");
         reusableList.add("Have Sweden, Norway, Denmark, and Finland as faction members");
         northernLight.setSpecificOtherNation(new Nation("Sweden", R.mipmap.ic_flag_sweden_round,9));
-        northernLight.setInstructions(reusableList);
+        northernLight.addListOfInstructions(reusableList);
         achievementList.add(northernLight);
         reusableList.clear();
 
@@ -151,7 +151,7 @@ public class AchievementData {
         onceMoreMate.setDifficulty("Medium");
         reusableList.add("Occupy Edirne");
         onceMoreMate.setSpecificOtherNation(new Nation("Australia", R.mipmap.ic_flag_australia_round,12));
-        onceMoreMate.setInstructions(reusableList);
+        onceMoreMate.addListOfInstructions(reusableList);
         achievementList.add(onceMoreMate);
         reusableList.clear();
 
@@ -159,7 +159,7 @@ public class AchievementData {
         oneEmpire.setNationFlag("Britain");
         oneEmpire.setDifficulty("Medium");
         reusableList.add("Every state in the world is either annexed, puppeted, or allied with you");
-        oneEmpire.setInstructions(reusableList);
+        oneEmpire.addListOfInstructions(reusableList);
         achievementList.add(oneEmpire);
         reusableList.clear();
 
@@ -167,7 +167,7 @@ public class AchievementData {
         operationSeaLion.setNationFlag("Germany");
         operationSeaLion.setDifficulty("Easy");
         reusableList.add("Control British mainland");
-        operationSeaLion.setInstructions(reusableList);
+        operationSeaLion.addListOfInstructions(reusableList);
         achievementList.add(operationSeaLion);
         reusableList.clear();
 
@@ -177,7 +177,7 @@ public class AchievementData {
         reusableList.add("Control Svealand");
         reusableList.add("Communist");
         partyLikeIts.setSpecificOtherNation(new Nation("Denmark", R.mipmap.ic_flag_denmark_round,13));
-        partyLikeIts.setInstructions(reusableList);
+        partyLikeIts.addListOfInstructions(reusableList);
         achievementList.add(partyLikeIts);
         reusableList.clear();
 
@@ -186,7 +186,7 @@ public class AchievementData {
         polandCanIntoSpace.setDifficulty("Easy");
         reusableList.add("Have researched Advanced Rocket Engines");
         polandCanIntoSpace.setSpecificOtherNation(new Nation("Poland", R.mipmap.ic_flag_poland_round,7));
-        polandCanIntoSpace.setInstructions(reusableList);
+        polandCanIntoSpace.addListOfInstructions(reusableList);
         achievementList.add(polandCanIntoSpace);
         reusableList.clear();
 
@@ -195,7 +195,7 @@ public class AchievementData {
         sunsetInvasion.setDifficulty("Medium");
         sunsetInvasion.setSpecificOtherNation(new Nation("Mexico", R.mipmap.ic_flag_mexico_round,14));
         reusableList.add("Control coastal European province");
-        sunsetInvasion.setInstructions(reusableList);
+        sunsetInvasion.addListOfInstructions(reusableList);
         achievementList.add(sunsetInvasion);
         reusableList.clear();
 
@@ -206,7 +206,7 @@ public class AchievementData {
         revengeOfMontezuma.setDifficulty("Medium");
         reusableList.add("Control Texas, New Mexico, Arizona, Utah, California, Nevada");
         revengeOfMontezuma.setSpecificOtherNation(new Nation("Mexico", R.mipmap.ic_flag_mexico_round,14));
-        revengeOfMontezuma.setInstructions(reusableList);
+        revengeOfMontezuma.addListOfInstructions(reusableList);
         achievementList.add(revengeOfMontezuma);
         reusableList.clear();
 
@@ -214,7 +214,7 @@ public class AchievementData {
         revolutionTriumphant.setNationFlag("Soviet");
         revolutionTriumphant.setDifficulty("Easy");
         reusableList.add("Puppet Germany");
-        revolutionTriumphant.setInstructions(reusableList);
+        revolutionTriumphant.addListOfInstructions(reusableList);
         achievementList.add(revolutionTriumphant);
         reusableList.clear();
 
@@ -222,7 +222,7 @@ public class AchievementData {
         timeOnOurSide.setNationFlag("Any");
         timeOnOurSide.setDifficulty("Easy");
         reusableList.add("Reach 1948");
-        timeOnOurSide.setInstructions(reusableList);
+        timeOnOurSide.addListOfInstructions(reusableList);
         achievementList.add(timeOnOurSide);
         reusableList.clear();
 
@@ -230,7 +230,7 @@ public class AchievementData {
         transportTycoon.setNationFlag("Any");
         transportTycoon.setDifficulty("Easy");
         reusableList.add("Have at least 1000 convoys");
-        transportTycoon.setInstructions(reusableList);
+        transportTycoon.addListOfInstructions(reusableList);
         achievementList.add(transportTycoon);
         reusableList.clear();
 
@@ -238,7 +238,7 @@ public class AchievementData {
         trueBlitzkrieg.setNationFlag("Germany");
         trueBlitzkrieg.setDifficulty("Easy");
         reusableList.add("Capitulate France and Poland before 1940");
-        trueBlitzkrieg.setInstructions(reusableList);
+        trueBlitzkrieg.addListOfInstructions(reusableList);
         achievementList.add(trueBlitzkrieg);
         reusableList.clear();
 
@@ -247,7 +247,7 @@ public class AchievementData {
         unitedNetherlands.setDifficulty("Easy");
         reusableList.add("Conquer Luxembourg and Belgium");
         unitedNetherlands.setSpecificOtherNation(new Nation("Netherlands", R.mipmap.ic_flag_netherlands_round,7));
-        unitedNetherlands.setInstructions(reusableList);
+        unitedNetherlands.addListOfInstructions(reusableList);
         achievementList.add(unitedNetherlands);
         reusableList.clear();
 
@@ -255,7 +255,7 @@ public class AchievementData {
         viveLaFrance.setNationFlag("France");
         viveLaFrance.setDifficulty("Easy");
         reusableList.add("Reach 1948 without capitulating or surrendering");
-        viveLaFrance.setInstructions(reusableList);
+        viveLaFrance.addListOfInstructions(reusableList);
         achievementList.add(viveLaFrance);
         reusableList.clear();
 
@@ -263,7 +263,7 @@ public class AchievementData {
         builtItInADay.setNationFlag("Any");
         builtItInADay.setDifficulty("Easy");
         reusableList.add("Research Construction V");
-        builtItInADay.setInstructions(reusableList);
+        builtItInADay.addListOfInstructions(reusableList);
         achievementList.add(builtItInADay);
         reusableList.clear();
 
@@ -271,7 +271,7 @@ public class AchievementData {
         wunderwaffen.setNationFlag("Any");
         wunderwaffen.setDifficulty("Easy");
         reusableList.add("Have researched Advanced Rocket Engines, Jet Engines, and Nuclear Bombs");
-        wunderwaffen.setInstructions(reusableList);
+        wunderwaffen.addListOfInstructions(reusableList);
         achievementList.add(wunderwaffen);
         reusableList.clear();
 

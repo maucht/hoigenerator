@@ -461,7 +461,7 @@ public class new_playthrough extends Fragment {
                     Button goBackButton = generatedDialog.findViewById(R.id.goBackButton);
                     Button saveButton = generatedDialog.findViewById(R.id.acceptButton);
 
-                    goBackButton.setOnClickListener(new View.OnClickListener() {
+                    goBackButton.setOnClickListener(new View.OnClickListener() { // GO BACK
                         @Override
                         public void onClick(View v) {
                             Log.d("CLICKED","CLICKED GO BACK");
@@ -471,7 +471,7 @@ public class new_playthrough extends Fragment {
                         }
                     });
 
-                    saveButton.setOnClickListener(new View.OnClickListener() {
+                    saveButton.setOnClickListener(new View.OnClickListener() { // SAVE GENERATION
                         @Override
                         public void onClick(View v) {
                             saveData(new Generation(new_playthrough.this.generatedAchievementList.size()+ randomObj.nextInt(100000),new_playthrough.this.selectedNation,
@@ -495,6 +495,22 @@ public class new_playthrough extends Fragment {
 
                     generatedAchievementImage.setImageResource(new_playthrough.this.selectedAchievement.getImageId());
                     generatedAchievementText.setText(new_playthrough.this.selectedAchievement.getName());
+
+                    LinearLayout instructionBox = generatedDialog.findViewById(R.id.instruction_box);
+                    instructionBox.removeAllViews();
+
+                    // GIVES ME NO INSTRUCTIONS
+                    Log.d("DELETE THIS","INSUTRCTIONS: "+new_playthrough.this.selectedAchievement.getInstructions().get(0));
+
+                    for(String currInstruction : new_playthrough.this.selectedAchievement.getInstructions()){
+                        Log.d("UHHH","currInstruction: "+currInstruction);
+                        View instructionView = inflater.inflate(R.layout.instruction_layout, instructionBox, false);
+
+                        TextView instructionText = instructionView.findViewById(R.id.instruction_layout_text);
+                        instructionText.setText(currInstruction);
+
+                        instructionBox.addView(instructionView);
+                    }
 
 
 

@@ -39,6 +39,15 @@
             android:text="Go Back" />
 
         <LinearLayout
+            android:id="@+id/instruction_box"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical"
+            android:padding="30dp"></LinearLayout>
+
+        <LinearLayout
             android:id="@+id/headerGeneratedLinear"
             android:layout_width="match_parent"
             android:layout_height="111dp"
