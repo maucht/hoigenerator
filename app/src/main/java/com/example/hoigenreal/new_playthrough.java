@@ -260,6 +260,12 @@ public class new_playthrough extends Fragment {
 
 
                     Random randomObj = new Random();
+
+                    Nation savePriorToGenerationNation = new_playthrough.this.selectedNation;
+                    Achievement savePriorToGenerationAchievement = new_playthrough.this.selectedAchievement;
+                    Difficulty savePriorToGenerationDifficulty = new_playthrough.this.selectedDifficulty;
+
+
                     if(incompatibleDifficulties){
                         Log.w("Generation Fail","GENERATION FAIL: incompatibleDifficulties. Setting Difficulty to match Achievement Difficulty");
                     }
@@ -391,7 +397,29 @@ public class new_playthrough extends Fragment {
                         }
                         // FIX THIS: Nation-difficulty pairs without achievement pool will crash this.
                         // Roll back difficulty to medium to fix this.
-                        int randomAchievementPos = randomObj.nextInt(suitableAchievementList.size());
+                        // Go back up and recollect suitable achievements ?
+                        int randomAchievementPos;
+                        try {
+                            randomAchievementPos = randomObj.nextInt(suitableAchievementList.size());
+                            // put the suitableAchievements.get() function here and in catch
+                        }
+                        catch(Exception e){
+                            Log.wtf("CAUGHT EXCEPTION","CAUGHT: "+e.getMessage()+" --- Changing difficulty to Medium");
+
+                            Toast.makeText(getContext(), "Changing Difficulty to Medium", Toast.LENGTH_LONG).show();
+                            new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(2);
+
+
+                            for(Achievement currAchievement: new_playthrough.this.listOfAllAchievements){
+                                if(currAchievement.getDifficulty() == new_playthrough.this.selectedDifficulty.getName()
+                                        && currAchievement.getValidNationList().contains(new_playthrough.this.selectedNation.getNationName())
+                                ){
+                                    suitableAchievementList.add(currAchievement);
+                                }
+                            }
+
+                            randomAchievementPos = randomObj.nextInt(suitableAchievementList.size());
+                        }
                         new_playthrough.this.selectedAchievement = suitableAchievementList.get(randomAchievementPos);
                     }
                     // Given Difficulty
@@ -483,8 +511,10 @@ public class new_playthrough extends Fragment {
                         public void onClick(View v) {
                             Log.d("CLICKED","CLICKED GO BACK");
                             new_playthrough.this.showDialog = false;
-                            Log.d("Nav","Current Dialog state: "+new_playthrough.this.showDialog);
                             generatedDialog.hide();
+                            new_playthrough.this.selectedNation = savePriorToGenerationNation;
+                            new_playthrough.this.selectedAchievement = savePriorToGenerationAchievement;
+                            new_playthrough.this.selectedDifficulty = savePriorToGenerationDifficulty;
                         }
                     });
 
