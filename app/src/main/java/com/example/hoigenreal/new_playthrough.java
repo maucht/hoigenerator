@@ -57,13 +57,14 @@ public class new_playthrough extends Fragment {
 
     public boolean showDialog=true;
 
-    public Nation selectedNation;
-    public Achievement selectedAchievement;
-    public Difficulty selectedDifficulty;
+    public List<Nation> listOfAllNations = NationData.getAllNations();
+    public List<Achievement> listOfAllAchievements = AchievementData.getAllAchievements(); // THESE 3 ARE ONLY USED IN GENERATION
+    public List<Difficulty> listOfAllDifficulties = DifficultyData.getAllDifficulties();
 
-    public List<Nation> listOfAllNations;
-    public List<Achievement> listOfAllAchievements; // THESE 3 ARE ONLY USED IN GENERATION
-    public List<Difficulty> listOfAllDifficulties;
+    public Nation selectedNation = this.listOfAllNations.get(0);
+    public Achievement selectedAchievement = this.listOfAllAchievements.get(0);
+    public Difficulty selectedDifficulty = this.listOfAllDifficulties.get(0);
+
 
     private View InflatedViewForFinding;
 
@@ -255,6 +256,35 @@ public class new_playthrough extends Fragment {
                 public void onClick(View v) {
                     new_playthrough.this.showDialog=true;
 
+                    //  CATCH NULL VALUE OBJECTS
+                    // NATION -- i genuinely dont know why, but this doesnt catch the error at all
+                    // im thinking its because of "other specific nations"
+                    try{
+                        String tryNationName = new_playthrough.this.selectedNation.getNationName();
+                        Boolean checkNationName = new_playthrough.this.selectedNation.getNationName() == "Any";
+                    }
+                    catch(Exception e){
+                        Log.wtf("CAUGHT EXCEPTION","CAUGHT: " + e.getMessage() + " --- SETTING NATION TO ANY");
+                        new_playthrough.this.selectedNation = new_playthrough.this.listOfAllNations.get(0);
+                    }
+                    //ACHIEVEMENT
+                    try{
+                        String tryAchievementName = new_playthrough.this.selectedAchievement.getName();
+                    }
+                    catch(Exception e){
+                        Log.wtf("CAUGHT EXCEPTION","CAUGHT: " + e.getMessage() + " --- SETTING ACHIEVEMENT TO ANY");
+                        new_playthrough.this.selectedAchievement = new_playthrough.this.listOfAllAchievements.get(0);
+                    }
+                    // DIFFICULTY
+                    try{
+                        String tryDifficultyName = new_playthrough.this.selectedDifficulty.getName();
+                    }
+                    catch(Exception e){
+                        Log.wtf("CAUGHT EXCEPTION","CAUGHT: " + e.getMessage() + " --- SETTING DIFFICULTY TO ANY");
+                        new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(0);
+                    }
+
+
                     // fail cases - absurd levels of spaghetti code below
                     Boolean incompatibleDifficulties = ((new_playthrough.this.selectedAchievement.getDifficulty() != new_playthrough.this.selectedDifficulty.getDifficulty()) && selectedAchievement.getName()!="Any");
 
@@ -422,8 +452,9 @@ public class new_playthrough extends Fragment {
                         }
                         new_playthrough.this.selectedAchievement = suitableAchievementList.get(randomAchievementPos);
                     }
-                    // Given Difficulty
-                    if(new_playthrough.this.selectedDifficulty.getName()!="Any"
+                    // Given Difficulty, this is where teh getNationName null object error comes.
+                    // This is fucked
+                    if(new_playthrough.this.selectedNation !=null && new_playthrough.this.selectedDifficulty.getName()!="Any"
                     && new_playthrough.this.selectedNation.getNationName() == "Any"
                     && new_playthrough.this.selectedAchievement.getName()=="Any"
                     ){
@@ -472,23 +503,6 @@ public class new_playthrough extends Fragment {
                                 new_playthrough.this.selectedDifficulty = new_playthrough.this.listOfAllDifficulties.get(3);
                                 break;
                         } // sets difficulty based on achievement
-                    }
-
-                    try{
-                        String tryNationName = new_playthrough.this.selectedNation.getNationName();
-                    }
-                    catch(Exception e){
-                        Log.wtf("CAUGHT EXCEPTION","CAUGHT: " + e.getMessage() + " --- FINDING ACCEPTABLE NATION");
-                        if(new_playthrough.this.selectedNation.getNationName() == "Other"){
-                            new_playthrough.this.selectedNation = new_playthrough.this.selectedAchievement.getSpecificOtherNation();
-                        }
-                        else{
-                            for(Nation currNation : new_playthrough.this.listOfAllNations){
-                                if(currNation.getNationName() == new_playthrough.this.selectedAchievement.getValidNationList().get(0)){
-                                    new_playthrough.this.selectedNation = currNation;
-                                }
-                            }
-                        }
                     }
 
                     Log.d("On Click Button","Should Generate Button");

@@ -1,8 +1,10 @@
 package com.example.hoigenreal;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,6 +44,9 @@ public class achievements extends Fragment {
     private View InflatedViewForFinding;
 
     private static final String COMPLETED_ACHIEVEMENT_LIST = "completed achievement list";
+    private static final String GENERATION_LIST="generation list";
+
+    private List<Generation> generationList = new ArrayList<>();
     private List<Achievement> completedAchievementList = new ArrayList<>();
 
     private static final String COMPLETED_LIST = "completed list";
@@ -89,6 +95,49 @@ public class achievements extends Fragment {
         achievements.this.calculateAchievementNameList();
         InflatedViewForFinding =  inflater.inflate(R.layout.fragment_achievements, container, false);
 
+        View settingsCog = InflatedViewForFinding.findViewById(R.id.settingsCogView);
+        settingsCog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("NAVIGATION","Clicked on Cog Wheel, should bring up settings dialog");
+                // new dialog, just copy and paste the generation dialog and size it down, throw a few buttons in and call it a day
+                final Dialog settingsDialog = new Dialog(getActivity(),android.R.style.Theme_Black_NoTitleBar);
+                settingsDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160,0,0,0))); // sets gray background
+                settingsDialog.setContentView(R.layout.settings_dialog);
+                settingsDialog.setCancelable(true);
+                settingsDialog.show();
+
+                Button clearActiveButton = settingsDialog.findViewById(R.id.clearActiveButton);
+                Button clearCompleteButton = settingsDialog.findViewById(R.id.clearCompleteButton);
+                Button resetAchievementsButton = settingsDialog.findViewById(R.id.resetAchievementsButton);
+
+                clearActiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("SETTINGS BUTTON","SHOULD CLEAR ACTIVE");
+                        // sharedpref
+                        achievements.this.clearActivePlaythroughs();
+                    }
+                });
+                clearCompleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("SETTINGS BUTTON", "SHOULD CLEAR COMPLETE");
+                        achievements.this.clearCompletePlaythroughs();
+                    }
+                });
+                resetAchievementsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("SETTINGS BUTTON","SHOULD RESET ACHIEVEMENTS");
+                        achievements.this.clearAchievements();
+                        achievements.this.clearCompletePlaythroughs();
+                        achievements.this.loadCompletedAchievementListData();
+                    }
+                });
+            }
+        });
+
         LinearLayout parentLayout = InflatedViewForFinding.findViewById(R.id.achievementItemLinearLayout);
         if(InflatedViewForFinding!=null){
             for(Achievement currAch : listOfAllAchievements){
@@ -124,6 +173,17 @@ public class achievements extends Fragment {
             }
         }
     }
+    private void loadActiveData(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mySharedPreferences.getString(GENERATION_LIST,null);
+        Type type = new TypeToken<ArrayList<Generation>>() {}.getType();
+        achievements.this.generationList = gson.fromJson(json,type);
+
+        if(generationList==null){
+            generationList = new ArrayList<>();
+        }
+    }
     private void loadCompletedListData(){
         SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -145,5 +205,35 @@ public class achievements extends Fragment {
         if(completedAchievementList==null){
             completedAchievementList = new ArrayList<>();
         }
+    }
+    private void clearActivePlaythroughs(){
+
+        achievements.this.loadActiveData();
+
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        achievements.this.generationList.clear();
+        String json = gson.toJson(this.generationList);
+        sharedPreferencesEditor.putString(GENERATION_LIST,json);
+        sharedPreferencesEditor.apply();
+    }
+    private void clearCompletePlaythroughs(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        achievements.this.completedList.clear();
+        String json = gson.toJson(this.completedList);
+        sharedPreferencesEditor.putString(COMPLETED_LIST,json);
+        sharedPreferencesEditor.apply();
+    }
+    private void clearAchievements(){
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        achievements.this.completedAchievementList.clear();
+        String json = gson.toJson(this.completedAchievementList);
+        sharedPreferencesEditor.putString(COMPLETED_ACHIEVEMENT_LIST,json);
+        sharedPreferencesEditor.apply();
     }
 }
