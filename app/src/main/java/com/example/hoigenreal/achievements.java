@@ -54,6 +54,7 @@ public class achievements extends Fragment {
 
     private List<Achievement> listOfAllAchievements = AchievementData.getAllAchievements();
     private List<String> listOfCompletedAchievementNames = new ArrayList<>();
+    private List<Nation> allNations = NationData.getAllNations();
 
 
     public achievements() {
@@ -157,6 +158,50 @@ public class achievements extends Fragment {
                         // #96eb98
                         //
                     }
+                    // add on click for each achievement.
+                    // put up a dialog with instructions
+                    achievementView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final Dialog achievementInstructionDialog = new Dialog(getActivity(),android.R.style.Theme_Black_NoTitleBar);
+                            achievementInstructionDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160,0,0,0))); // sets gray background
+                            achievementInstructionDialog.setContentView(R.layout.achievement_dialog);
+                            achievementInstructionDialog.setCancelable(true);
+
+                            TextView achievementDialogHeader = achievementInstructionDialog.findViewById(R.id.achievementHeader);
+                            achievementDialogHeader.setText(currAch.getName());
+
+                            TextView achievementDialogNationHeader = achievementInstructionDialog.findViewById(R.id.nationHeader);
+                            Nation achievementNation = new Nation("Sweden", R.mipmap.ic_flag_sweden_round,9);
+                            if(currAch.getSpecificOtherNation() != null){
+                                achievementNation = currAch.getSpecificOtherNation();
+                            }
+                            else {
+                                String findNationName = currAch.getValidNationList().get(0);
+                                for(Nation currNation : allNations){
+                                    if(currNation.getNationName() == findNationName){
+                                        achievementNation = currNation;
+                                        break;
+                                    }
+                                }
+                            }
+                            achievementDialogNationHeader.setText(achievementNation.getNationName());
+
+                            ImageView achievementDialogNationFlag = achievementInstructionDialog.findViewById(R.id.achievementNationFlag);
+                            achievementDialogNationFlag.setImageResource(achievementNation.getImageId());
+
+                            LinearLayout linearLayoutParent = achievementInstructionDialog.findViewById(R.id.parentLinearLayout);
+                            for(String currInstruction : currAch.getInstructions()){
+                                View instructionView = getLayoutInflater().inflate(R.layout.instruction_layout, linearLayoutParent, false);
+                                TextView instructionText = instructionView.findViewById(R.id.instruction_layout_text);
+                                instructionText.setText(currInstruction);
+
+                                linearLayoutParent.addView(instructionView);
+                            }
+                            achievementInstructionDialog.show();
+                        }
+                    });
+
                     parentLayout.addView(achievementView);
                 }
             }

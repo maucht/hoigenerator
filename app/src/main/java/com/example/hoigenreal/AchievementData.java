@@ -275,19 +275,19 @@ public class AchievementData {
         achievementList.add(wunderwaffen);
         reusableList.clear();
 
-        //Together For Victory -- everything past core achievements are not getting in. way too many -- to any reader, you will need to venmo me $500 to change this
-        Achievement brainsCanada = new Achievement("Braaaaains!",30,R.mipmap.ic_achievement_bigger,"TFV");
+        //Together For Victory -- complete
+        Achievement brainsCanada = new Achievement("Braaaaains!",30,R.mipmap.ic_achievement_brains_round,"TFV");
         brainsCanada.setNationFlag("Other");
-        brainsCanada.setSpecificOtherNation(new Nation("Canada", R.mipmap.ic_flag_netherlands_round,10000));
+        brainsCanada.setSpecificOtherNation(new Nation("Canada", R.mipmap.ic_flag_canada_round,8));
         brainsCanada.setDifficulty("Easy");
         reusableList.add("Complete focus 'Send in the Zombies'");
         brainsCanada.addListOfInstructions(reusableList);
         achievementList.add(brainsCanada);
         reusableList.clear();
 
-        Achievement CrusaderSouth = new Achievement("Crusader Kings",31,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement CrusaderSouth = new Achievement("Crusader Kings",31,R.mipmap.ic_achievement_crusader_round,"TFV");
         CrusaderSouth.setNationFlag("Other");
-        CrusaderSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_netherlands_round,10000));
+        CrusaderSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_southafrica_round,10000));
         CrusaderSouth.setDifficulty("Medium");
         reusableList.add("Have Edward VIII national spirit");
         reusableList.add("Control the state Jerusalem");
@@ -295,9 +295,9 @@ public class AchievementData {
         achievementList.add(CrusaderSouth);
         reusableList.clear();
 
-        Achievement CrusaderKingsTwoSouth = new Achievement("Crusader Kings 2",32,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement CrusaderKingsTwoSouth = new Achievement("Crusader Kings 2",32,R.mipmap.ic_achievement_crusader2_round,"TFV");
         CrusaderKingsTwoSouth.setNationFlag("Other");
-        CrusaderKingsTwoSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_netherlands_round,10000));
+        CrusaderKingsTwoSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_southafrica_round,10000));
         CrusaderKingsTwoSouth.setDifficulty("Medium");
         reusableList.add("Complete focus 'Anti-Colonialist Crusade'");
         reusableList.add("Be faction leader");
@@ -306,36 +306,36 @@ public class AchievementData {
         achievementList.add(CrusaderKingsTwoSouth);
         reusableList.clear();
 
-        Achievement CutSouth = new Achievement("Cut The Strings",33,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement CutSouth = new Achievement("Cut The Strings",33,R.mipmap.ic_achievement_cutstrings_round,"TFV");
         CutSouth.setNationFlag("Other");
-        CutSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_netherlands_round,10000));
+        CutSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_southafrica_round,10000));
         CutSouth.setDifficulty("Easy");
         reusableList.add("Not a puppet");
         CutSouth.addListOfInstructions(reusableList);
         achievementList.add(CutSouth);
         reusableList.clear();
 
-        Achievement DistrictSouth = new Achievement("District 9",34,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement DistrictSouth = new Achievement("District 9",34,R.mipmap.ic_achievement_district_round,"TFV");
         DistrictSouth.setNationFlag("Other");
-        DistrictSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_netherlands_round,10000));
+        DistrictSouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_southafrica_round,10000));
         DistrictSouth.setDifficulty("Easy");
         reusableList.add("Have more than 8 civilian factories in the state of Transvaal");
         DistrictSouth.addListOfInstructions(reusableList);
         achievementList.add(DistrictSouth);
         reusableList.clear();
 
-        Achievement FreegyptEgypt = new Achievement("Freegypt",35,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement FreegyptEgypt = new Achievement("Freegypt",35,R.mipmap.ic_achievement_freegypt_round,"TFV");
         FreegyptEgypt.setNationFlag("Other");
-        FreegyptEgypt.setSpecificOtherNation(new Nation("Egypt", R.mipmap.ic_flag_netherlands_round,10000));
+        FreegyptEgypt.setSpecificOtherNation(new Nation("Egypt", R.mipmap.ic_flag_egypt_round,10002));
         FreegyptEgypt.setDifficulty("Easy");
         reusableList.add("Become a free nation using the autonomy system");
         FreegyptEgypt.addListOfInstructions(reusableList);
         achievementList.add(FreegyptEgypt);
         reusableList.clear();
 
-        Achievement ISouth = new Achievement("I Am the Tong Master",36,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement ISouth = new Achievement("I Am the Tong Master",36,R.mipmap.ic_achievement_iamtong_round,"TFV");
         ISouth.setNationFlag("Other");
-        ISouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_netherlands_round,10000));
+        ISouth.setSpecificOtherNation(new Nation("South Africa", R.mipmap.ic_flag_southafrica_round,10000));
         ISouth.setDifficulty("Medium");
         reusableList.add("Break free");
         reusableList.add("Have at least 1 subject");
@@ -343,18 +343,18 @@ public class AchievementData {
         achievementList.add(ISouth);
         reusableList.clear();
 
-        Achievement ItsCanada = new Achievement("It's 1812 All Over Again",37,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement ItsCanada = new Achievement("It's 1812 All Over Again",37,R.mipmap.ic_achievement_its1812_round,"TFV");
         ItsCanada.setNationFlag("Other");
-        ItsCanada.setSpecificOtherNation(new Nation("Canada", R.mipmap.ic_flag_netherlands_round,10000));
+        ItsCanada.setSpecificOtherNation(new Nation("Canada", R.mipmap.ic_flag_canada_round,8));
         ItsCanada.setDifficulty("Easy");
         reusableList.add("Control the state of Maryland");
         ItsCanada.addListOfInstructions(reusableList);
         achievementList.add(ItsCanada);
         reusableList.clear();
 
-        Achievement OurBritish = new Achievement("Our Words are Backed with Nuclear Weapons",38,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement OurBritish = new Achievement("Our Words are Backed with Nuclear Weapons",38,R.mipmap.ic_achievement_ourwordsarebacked_round,"TFV");
         OurBritish.setNationFlag("Other");
-        OurBritish.setSpecificOtherNation(new Nation("British Raj", R.mipmap.ic_flag_netherlands_round,10000));
+        OurBritish.setSpecificOtherNation(new Nation("British Raj", R.mipmap.ic_flag_britishraj_round,10001));
         OurBritish.setDifficulty("Easy");
         reusableList.add("Have Quit India Movement national spirit");
         reusableList.add("Use a nuke");
@@ -362,7 +362,7 @@ public class AchievementData {
         achievementList.add(OurBritish);
         reusableList.clear();
 
-        Achievement TheBRI = new Achievement("The Empire Strikes Back",39,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement TheBRI = new Achievement("The Empire Strikes Back",39,R.mipmap.ic_achievement_empirestrikes_round,"TFV");
         TheBRI.setNationFlag("Britain");
         TheBRI.setDifficulty("Easy");
         reusableList.add("Be at with with one of your former puppets");
@@ -370,7 +370,7 @@ public class AchievementData {
         achievementList.add(TheBRI);
         reusableList.clear();
 
-        Achievement TheAny = new Achievement("The Puppetmaster",40,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement TheAny = new Achievement("The Puppetmaster",40,R.mipmap.ic_achievement_puppetmaster_round,"TFV");
         TheAny.setNationFlag("Any");
         TheAny.setDifficulty("Medium");
         reusableList.add("Have more than 50 subjects");
@@ -378,9 +378,9 @@ public class AchievementData {
         achievementList.add(TheAny);
         reusableList.clear();
 
-        Achievement TheAustralia = new Achievement("The weapons of the Third Emu War",41,R.mipmap.ic_achievement_bigger,"TFV");
+        Achievement TheAustralia = new Achievement("The weapons of the Third Emu War",41,R.mipmap.ic_achievement_thirdemuwar_round,"TFV");
         TheAustralia.setNationFlag("Other");
-        TheAustralia.setSpecificOtherNation(new Nation("Australia", R.mipmap.ic_flag_netherlands_round,10000));
+        TheAustralia.setSpecificOtherNation(new Nation("Australia", R.mipmap.ic_flag_australia_round,12));
         TheAustralia.setDifficulty("Medium");
         reusableList.add("Nuke core Australian territory");
         TheAustralia.addListOfInstructions(reusableList);
@@ -388,9 +388,9 @@ public class AchievementData {
         reusableList.clear();
 
 
-        Achievement BetterHungary = new Achievement("Better than the Szent Istvan",43,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement BetterHungary = new Achievement("Better than the Szent Istvan",42,R.mipmap.ic_flag_svan_round,"DOD");
         BetterHungary.setNationFlag("Other");
-        BetterHungary.setSpecificOtherNation(new Nation("Hungary", R.mipmap.ic_flag_netherlands_round,10000));
+        BetterHungary.setSpecificOtherNation(new Nation("Hungary", R.mipmap.ic_flag_hungary_round,10003));
         BetterHungary.setDifficulty("Medium");
         reusableList.add("Have Miklos Horthy as naval commander");
         reusableList.add("Have at least 1 battleship");
@@ -398,9 +398,9 @@ public class AchievementData {
         achievementList.add(BetterHungary);
         reusableList.clear();
 
-        Achievement CzechmateCzechoslovakia = new Achievement("Czechmate",43,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement CzechmateCzechoslovakia = new Achievement("Czechmate",43,R.mipmap.ic_achievement_czech_round,"DOD");
         CzechmateCzechoslovakia.setNationFlag("Other");
-        CzechmateCzechoslovakia.setSpecificOtherNation(new Nation("Czechoslovakia", R.mipmap.ic_flag_netherlands_round,10000));
+        CzechmateCzechoslovakia.setSpecificOtherNation(new Nation("Czechoslovakia", R.mipmap.ic_flag_czechoslovakia_round,10004));
         CzechmateCzechoslovakia.setDifficulty("Medium");
         reusableList.add("At war with United Kingdom");
         reusableList.add("United Kingdom is democratic");
@@ -409,9 +409,9 @@ public class AchievementData {
         achievementList.add(CzechmateCzechoslovakia);
         reusableList.clear();
 
-        Achievement DeathRomania = new Achievement("Death or Dishonor or Cake",44,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement DeathRomania = new Achievement("Death or Dishonor or Cake",44,R.mipmap.ic_achievement_deathdishonor_round,"DOD");
         DeathRomania.setNationFlag("Other");
-        DeathRomania.setSpecificOtherNation(new Nation("Romania", R.mipmap.ic_flag_netherlands_round,10000));
+        DeathRomania.setSpecificOtherNation(new Nation("Romania", R.mipmap.ic_flag_romania_round,10005));
         DeathRomania.setDifficulty("Medium");
         reusableList.add("Have Carol II as nation leader");
         reusableList.add("Do not complete focuses: 'All Parties Must End', 'Force Abdication', 'Handle the King'");
@@ -420,25 +420,25 @@ public class AchievementData {
         achievementList.add(DeathRomania);
         reusableList.clear();
 
-        Achievement EnSweden = new Achievement("En Svensk Tiger",45,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement EnSweden = new Achievement("En Svensk Tiger",45,R.mipmap.ic_achievement_ensvensk_round,"DOD");
         EnSweden.setNationFlag("Other");
-        EnSweden.setSpecificOtherNation(new Nation("Sweden", R.mipmap.ic_flag_netherlands_round,10000));
+        EnSweden.setSpecificOtherNation(new Nation("Sweden", R.mipmap.ic_flag_sweden_round,9));
         EnSweden.setDifficulty("Easy");
         reusableList.add("License from Germany either: Heavy Tank II, Heavy Tank III, Improved Heavy Tank Chassis, Advanced Heavy Tank Chassis");
         EnSweden.addListOfInstructions(reusableList);
         achievementList.add(EnSweden);
         reusableList.clear();
 
-        Achievement HugeoslaviaYugoslavia = new Achievement("Huge-oslavia",46,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement HugeoslaviaYugoslavia = new Achievement("Huge-oslavia",46,R.mipmap.ic_achievement_hugeoslavia_round,"DOD");
         HugeoslaviaYugoslavia.setNationFlag("Other");
-        HugeoslaviaYugoslavia.setSpecificOtherNation(new Nation("Yugoslavia", R.mipmap.ic_flag_netherlands_round,10000));
+        HugeoslaviaYugoslavia.setSpecificOtherNation(new Nation("Romania", R.mipmap.ic_flag_romania_round,10005));
         HugeoslaviaYugoslavia.setDifficulty("Medium");
         reusableList.add("Own all cores of: Albania, Austria, Bulgaria, Hungary, Italy, Romania, Greece");
         HugeoslaviaYugoslavia.addListOfInstructions(reusableList);
         achievementList.add(HugeoslaviaYugoslavia);
         reusableList.clear();
 
-        Achievement LethalAny = new Achievement("Lethal Straight",47,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement LethalAny = new Achievement("Lethal Straight",47,R.mipmap.ic_achievement_lethal_round,"DOD");
         LethalAny.setNationFlag("Any");
         LethalAny.setDifficulty("Easy");
         reusableList.add("Have a production license from 5 of the 7 major powers");
@@ -446,18 +446,18 @@ public class AchievementData {
         achievementList.add(LethalAny);
         reusableList.clear();
 
-        Achievement MiklosHungary = new Achievement("Miklos Horthy and the Habsburg Prince",48,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement MiklosHungary = new Achievement("Miklos Horthy and the Habsburg Prince",48,R.mipmap.ic_achievement_miklos_round,"DOD");
         MiklosHungary.setNationFlag("Other");
-        MiklosHungary.setSpecificOtherNation(new Nation("Hungary", R.mipmap.ic_flag_netherlands_round,10000));
+        MiklosHungary.setSpecificOtherNation(new Nation("Hungary", R.mipmap.ic_flag_hungary_round,10003));
         MiklosHungary.setDifficulty("Medium");
         reusableList.add("Restore Austria Hungary as Hungary");
         MiklosHungary.addListOfInstructions(reusableList);
         achievementList.add(MiklosHungary);
         reusableList.clear();
 
-        Achievement NeitherRomania = new Achievement("Neither Death nor Dishonor",49,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement NeitherRomania = new Achievement("Neither Death nor Dishonor",49,R.mipmap.ic_achievement_deathdishonor_round,"DOD");
         NeitherRomania.setNationFlag("Other");
-        NeitherRomania.setSpecificOtherNation(new Nation("Romania", R.mipmap.ic_flag_netherlands_round,10000));
+        NeitherRomania.setSpecificOtherNation(new Nation("Romania", R.mipmap.ic_flag_romania_round,10005));
         NeitherRomania.setDifficulty("Medium");
         reusableList.add("Date is at least February 1942");
         reusableList.add("Never lose a starting state");
@@ -466,18 +466,18 @@ public class AchievementData {
         achievementList.add(NeitherRomania);
         reusableList.clear();
 
-        Achievement TheYugoslavia = new Achievement("The Balkan Powder Keg",50,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement TheYugoslavia = new Achievement("The Balkan Powder Keg",50,R.mipmap.ic_achievement_balkanpowder_round,"DOD");
         TheYugoslavia.setNationFlag("Other");
-        TheYugoslavia.setSpecificOtherNation(new Nation("Yugoslavia", R.mipmap.ic_flag_netherlands_round,10000));
+        TheYugoslavia.setSpecificOtherNation(new Nation("Yugoslavia", R.mipmap.ic_flag_yugoslavia_round,10009));
         TheYugoslavia.setDifficulty("Easy");
         reusableList.add("Declare war on Axis or Allies while part of either Axis or Allies");
         TheYugoslavia.addListOfInstructions(reusableList);
         achievementList.add(TheYugoslavia);
         reusableList.clear();
 
-        Achievement TheCzechoslovakia = new Achievement("The Munich Disagreement",51,R.mipmap.ic_achievement_bigger,"DOD");
+        Achievement TheCzechoslovakia = new Achievement("The Munich Disagreement",51,R.mipmap.ic_achievement_munichdisagreement_round,"DOD");
         TheCzechoslovakia.setNationFlag("Other");
-        TheCzechoslovakia.setSpecificOtherNation(new Nation("Czechoslovakia", R.mipmap.ic_flag_netherlands_round,10000));
+        TheCzechoslovakia.setSpecificOtherNation(new Nation("Czechoslovakia", R.mipmap.ic_flag_czechoslovakia_round,10004));
         TheCzechoslovakia.setDifficulty("Medium");
         reusableList.add("At war with Germany");
         reusableList.add("Control the state Oberbayern");
