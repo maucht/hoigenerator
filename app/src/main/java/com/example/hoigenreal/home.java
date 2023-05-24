@@ -1,7 +1,10 @@
 package com.example.hoigenreal;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -135,6 +139,46 @@ public class home extends Fragment {
                             playthroughItem.setVisibility(playthroughItem.GONE);
                             home.this.addCompletedData((int) v.getTag(R.id.gen_tag_key));
                             home.this.removeGenerationData((int) v.getTag(R.id.gen_tag_key));
+                        }
+                    });
+
+                    playthroughItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final Dialog playthroughDialog = new Dialog(getActivity(),android.R.style.Theme_Black_NoTitleBar);
+                            playthroughDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160,0,0,0))); // sets gray background
+                            playthroughDialog.setContentView(R.layout.playthrough_dialog);
+                            playthroughDialog.setCancelable(true);
+
+                            ImageView playthroughNationImage = playthroughDialog.findViewById(R.id.playthroughNationImage);
+                            ImageView playthroughAchievementImage = playthroughDialog.findViewById(R.id.playthroughAchievementImage);
+
+                            playthroughNationImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
+                            playthroughAchievementImage.setImageResource(currGeneration.getGeneratedAchievement().getImageId());
+
+                            TextView playthroughNationText = playthroughDialog.findViewById(R.id.playthroughNationText);
+                            TextView playthroughAchievementText = playthroughDialog.findViewById(R.id.playthroughAchievementHeader);
+
+                            playthroughNationText.setText(currGeneration.getGeneratedNation().getNationName());
+                            playthroughAchievementText.setText(currGeneration.getGeneratedAchievement().getName());
+
+                            LinearLayout instructionParentLayout = playthroughDialog.findViewById(R.id.instruction_box);
+                            for(String currInstruct : currGeneration.getGeneratedAchievement().getInstructions()){
+                                View instructionView = getLayoutInflater().inflate(R.layout.instruction_layout, instructionParentLayout, false);
+                                TextView instructionText = instructionView.findViewById(R.id.instruction_layout_text);
+                                instructionText.setText(currInstruct);
+
+                                instructionParentLayout.addView(instructionView);
+                            }
+                            Button notesButton = playthroughDialog.findViewById(R.id.noteButton);
+                            Button templateButton = playthroughDialog.findViewById(R.id.templateButton);
+                            notesButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // open a dialog that allows you to edit a 250 char limited note box
+                                }
+                            });
+                            playthroughDialog.show();
                         }
                     });
 

@@ -35,7 +35,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/achievementHeader"
+                        android:id="@+id/playthroughHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunitosans_bold"
@@ -49,7 +49,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/achievementNationFlag"
+                            android:id="@+id/playthroughNationFlag"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="20dp"
@@ -57,7 +57,7 @@
                             app:srcCompat="@mipmap/ic_flag_america_round" />
 
                         <TextView
-                            android:id="@+id/nationHeader"
+                            android:id="@+id/playthroughNationHeader"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:layout_marginRight="0dp"

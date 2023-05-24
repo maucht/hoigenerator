@@ -3,22 +3,17 @@ package com.example.hoigenreal;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +25,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -546,10 +540,10 @@ public class new_playthrough extends Fragment {
                         }
                     });
 
-                    ImageView generatedNationImage = (ImageView) generatedDialog.findViewById(R.id.nationImageView);
-                    TextView generatedNationText = (TextView) generatedDialog.findViewById(R.id.generatedNationText);
-                    ImageView generatedAchievementImage = (ImageView) generatedDialog.findViewById(R.id.achievementImageView);
-                    TextView generatedAchievementText = (TextView) generatedDialog.findViewById(R.id.generatedAchievementText);
+                    ImageView generatedNationImage = (ImageView) generatedDialog.findViewById(R.id.playthroughNationImage);
+                    TextView generatedNationText = (TextView) generatedDialog.findViewById(R.id.playthroughNationText);
+                    ImageView generatedAchievementImage = (ImageView) generatedDialog.findViewById(R.id.playthroughAchievementImage);
+                    TextView generatedAchievementText = (TextView) generatedDialog.findViewById(R.id.playthroughAchievementHeader);
 
                     generatedNationImage.setImageResource(new_playthrough.this.selectedNation.getImageId());
                     generatedNationText.setText(new_playthrough.this.selectedNation.getNationName());

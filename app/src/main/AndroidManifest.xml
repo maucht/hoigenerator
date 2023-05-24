@@ -7,7 +7,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_icon_altstarlogo"
-        android:label="HOI Logger"
+        android:label="HOI Companion"
         android:roundIcon="@mipmap/ic_icon_altstarlogo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HOIGenReal"

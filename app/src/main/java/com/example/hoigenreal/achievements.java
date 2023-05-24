@@ -168,10 +168,10 @@ public class achievements extends Fragment {
                             achievementInstructionDialog.setContentView(R.layout.achievement_dialog);
                             achievementInstructionDialog.setCancelable(true);
 
-                            TextView achievementDialogHeader = achievementInstructionDialog.findViewById(R.id.achievementHeader);
+                            TextView achievementDialogHeader = achievementInstructionDialog.findViewById(R.id.playthroughHeader);
                             achievementDialogHeader.setText(currAch.getName());
 
-                            TextView achievementDialogNationHeader = achievementInstructionDialog.findViewById(R.id.nationHeader);
+                            TextView achievementDialogNationHeader = achievementInstructionDialog.findViewById(R.id.playthroughNationHeader);
                             Nation achievementNation = new Nation("Sweden", R.mipmap.ic_flag_sweden_round,9);
                             if(currAch.getSpecificOtherNation() != null){
                                 achievementNation = currAch.getSpecificOtherNation();
@@ -187,7 +187,7 @@ public class achievements extends Fragment {
                             }
                             achievementDialogNationHeader.setText(achievementNation.getNationName());
 
-                            ImageView achievementDialogNationFlag = achievementInstructionDialog.findViewById(R.id.achievementNationFlag);
+                            ImageView achievementDialogNationFlag = achievementInstructionDialog.findViewById(R.id.playthroughNationFlag);
                             achievementDialogNationFlag.setImageResource(achievementNation.getImageId());
 
                             LinearLayout linearLayoutParent = achievementInstructionDialog.findViewById(R.id.parentLinearLayout);

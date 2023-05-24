@@ -20,24 +20,6 @@
         android:background="@color/md_theme_light_inverseSurface"
         android:clipToPadding="false">
 
-        <Button
-            android:id="@+id/acceptButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="400dp"
-            android:backgroundTint="@color/md_theme_dark_surfaceTint"
-            android:text="Accept" />
-
-        <Button
-            android:id="@+id/goBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="400dp"
-            android:backgroundTint="@color/md_theme_dark_tertiary"
-            android:text="Go Back" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -111,6 +93,24 @@
                 android:textColor="#989898"
                 android:textSize="20sp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/noteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="500dp"
+            android:backgroundTint="@color/md_theme_dark_tertiary"
+            android:text="Notes" />
+
+        <Button
+            android:id="@+id/templateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="500dp"
+            android:backgroundTint="#59EC5B"
+            android:text="Templates" />
 
     </FrameLayout>
 
