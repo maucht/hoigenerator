@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -156,13 +157,13 @@ public class home extends Fragment {
                             playthroughNationImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
                             playthroughAchievementImage.setImageResource(currGeneration.getGeneratedAchievement().getImageId());
 
-                            TextView playthroughNationText = playthroughDialog.findViewById(R.id.playthroughNationText);
+                            TextView playthroughNationText = playthroughDialog.findViewById(R.id.templateHeader);
                             TextView playthroughAchievementText = playthroughDialog.findViewById(R.id.playthroughAchievementHeader);
 
                             playthroughNationText.setText(currGeneration.getGeneratedNation().getNationName());
                             playthroughAchievementText.setText(currGeneration.getGeneratedAchievement().getName());
 
-                            LinearLayout instructionParentLayout = playthroughDialog.findViewById(R.id.instruction_box);
+                            LinearLayout instructionParentLayout = playthroughDialog.findViewById(R.id.notesBox);
                             for(String currInstruct : currGeneration.getGeneratedAchievement().getInstructions()){
                                 View instructionView = getLayoutInflater().inflate(R.layout.instruction_layout, instructionParentLayout, false);
                                 TextView instructionText = instructionView.findViewById(R.id.instruction_layout_text);
@@ -170,14 +171,30 @@ public class home extends Fragment {
 
                                 instructionParentLayout.addView(instructionView);
                             }
-                            Button notesButton = playthroughDialog.findViewById(R.id.noteButton);
-                            Button templateButton = playthroughDialog.findViewById(R.id.templateButton);
+                            Button notesButton = playthroughDialog.findViewById(R.id.notesButton);
                             notesButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    // open a dialog that allows you to edit a 250 char limited note box
+                                    final Dialog notesDialog = new Dialog(getActivity(),android.R.style.Theme_Black_NoTitleBar);
+                                    notesDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160,0,0,0))); // sets gray background
+                                    notesDialog.setContentView(R.layout.template_dialog);
+                                    notesDialog.setCancelable(true);
+                                    notesDialog.show();
+
+                                    Button saveNotesButton = notesDialog.findViewById(R.id.submitNotesButton);
+                                    TextView notesField = notesDialog.findViewById(R.id.notesEditText);
+                                    notesField.setText(currGeneration.getUserNotes());
+                                    saveNotesButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Toast.makeText(getActivity(), "Saved Notes", Toast.LENGTH_SHORT).show();
+                                            currGeneration.setNotes(notesField.getText().toString());
+                                            home.this.updateGenerationData(currGeneration.getId(),currGeneration);
+                                        }
+                                    });
                                 }
                             });
+
                             playthroughDialog.show();
                         }
                     });
@@ -192,6 +209,26 @@ public class home extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_frame_layout,new completed())
                 .commit();
+    }
+    private void updateGenerationData(int genId, Generation updatedGeneration){
+        int index = 0;
+        Generation genToUpdate;
+        for(Generation currGen : this.generatedList){
+            if(currGen.getId() == genId){
+                genToUpdate = currGen; // dont actually need this line
+                break;
+            }
+            index+=1;
+        }
+
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        this.generatedList.set(index,updatedGeneration);
+        String json = gson.toJson(this.generatedList);
+        sharedPreferencesEditor.putString(GENERATION_LIST,json);
+        sharedPreferencesEditor.apply();
+        home.this.loadListData();
     }
     private void removeGenerationData(int genId){
         Generation genToRemove;

@@ -44,7 +44,7 @@
             android:layout_marginTop="150dp">
 
             <LinearLayout
-                android:id="@+id/instruction_box"
+                android:id="@+id/notesBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="false"
@@ -69,7 +69,7 @@
                 app:srcCompat="@mipmap/ic_flag_germany" />
 
             <TextView
-                android:id="@+id/playthroughNationText"
+                android:id="@+id/templateHeader"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginRight="0dp"

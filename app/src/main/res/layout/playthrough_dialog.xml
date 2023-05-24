@@ -26,7 +26,7 @@
             android:layout_marginTop="150dp">
 
             <LinearLayout
-                android:id="@+id/instruction_box"
+                android:id="@+id/notesBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="false"
@@ -51,7 +51,7 @@
                 app:srcCompat="@mipmap/ic_flag_germany" />
 
             <TextView
-                android:id="@+id/playthroughNationText"
+                android:id="@+id/templateHeader"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginRight="0dp"
@@ -95,22 +95,13 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/noteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="500dp"
-            android:backgroundTint="@color/md_theme_dark_tertiary"
-            android:text="Notes" />
-
-        <Button
-            android:id="@+id/templateButton"
+            android:id="@+id/notesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="200dp"
             android:layout_marginTop="500dp"
             android:backgroundTint="#59EC5B"
-            android:text="Templates" />
+            android:text="Notes" />
 
     </FrameLayout>
 

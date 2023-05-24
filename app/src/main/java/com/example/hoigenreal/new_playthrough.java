@@ -541,7 +541,7 @@ public class new_playthrough extends Fragment {
                     });
 
                     ImageView generatedNationImage = (ImageView) generatedDialog.findViewById(R.id.playthroughNationImage);
-                    TextView generatedNationText = (TextView) generatedDialog.findViewById(R.id.playthroughNationText);
+                    TextView generatedNationText = (TextView) generatedDialog.findViewById(R.id.templateHeader);
                     ImageView generatedAchievementImage = (ImageView) generatedDialog.findViewById(R.id.playthroughAchievementImage);
                     TextView generatedAchievementText = (TextView) generatedDialog.findViewById(R.id.playthroughAchievementHeader);
 
@@ -551,7 +551,7 @@ public class new_playthrough extends Fragment {
                     generatedAchievementImage.setImageResource(new_playthrough.this.selectedAchievement.getImageId());
                     generatedAchievementText.setText(new_playthrough.this.selectedAchievement.getName());
 
-                    LinearLayout instructionBox = generatedDialog.findViewById(R.id.instruction_box);
+                    LinearLayout instructionBox = generatedDialog.findViewById(R.id.notesBox);
                     instructionBox.removeAllViews();
 
                     // GIVES ME NO INSTRUCTIONS

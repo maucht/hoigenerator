@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settingsPopUpContainer"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <FrameLayout
+        android:id="@+id/whiteBoxSettings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        android:background="@color/md_theme_light_inverseSurface"
+        android:clipToPadding="false">
+
+        <Button
+            android:id="@+id/submitNotesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="500dp"
+            android:backgroundTint="#59EC5B"
+            android:text="Save" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_marginTop="150dp">
+
+            <LinearLayout
+                android:id="@+id/notesBox"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:layout_alignParentBottom="false"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <EditText
+                    android:id="@+id/notesEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#191C1C"
+                    android:ems="10"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100"
+                    android:textColor="#FFFFFF"
+                    android:maxLines="5"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/playthroughNationLinear"
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/templateHeader"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="0dp"
+                android:fontFamily="@font/nunitosans_extrabold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="0dp"
+                android:text="Notes"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

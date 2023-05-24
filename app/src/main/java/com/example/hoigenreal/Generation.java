@@ -6,6 +6,11 @@ public class Generation {
     private Nation generatedNation;
     private Achievement generatedAchievement;
     private Difficulty generatedDifficulty;
+    private String userNotes = "Edit notes";
+
+    public void setNotes(String submitNotes){
+        this.userNotes = submitNotes;
+    }
 
     public int getId(){
         return this.id;
@@ -17,7 +22,7 @@ public class Generation {
         this.generatedAchievement = genAchievement;
         this.generatedDifficulty = genDifficulty;
     }
-
+    public String getUserNotes(){return this.userNotes;}
     public Nation getGeneratedNation(){
         return this.generatedNation;
     }
