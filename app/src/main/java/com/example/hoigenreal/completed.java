@@ -1,7 +1,10 @@
 package com.example.hoigenreal;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -110,6 +115,63 @@ public class completed extends Fragment {
                     View playthroughItemCompleteButton = playthroughItem.findViewById(R.id.item_complete_button);
                     playthroughItemCompleteButton.setVisibility(playthroughItemCompleteButton.GONE);
 
+                    playthroughItem.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           final Dialog playthroughDialog = new Dialog(getActivity(), android.R.style.Theme_Black_NoTitleBar);
+                           playthroughDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160, 0, 0, 0))); // sets gray background
+                           playthroughDialog.setContentView(R.layout.playthrough_dialog);
+                           playthroughDialog.setCancelable(true);
+
+                           ImageView playthroughNationImage = playthroughDialog.findViewById(R.id.playthroughNationImage);
+                           ImageView playthroughAchievementImage = playthroughDialog.findViewById(R.id.playthroughAchievementImage);
+
+                           playthroughNationImage.setImageResource(currGeneration.getGeneratedNation().getImageId());
+                           playthroughAchievementImage.setImageResource(currGeneration.getGeneratedAchievement().getImageId());
+
+                           TextView playthroughNationText = playthroughDialog.findViewById(R.id.templateHeader);
+                           TextView playthroughAchievementText = playthroughDialog.findViewById(R.id.playthroughAchievementHeader);
+
+                           playthroughNationText.setText(currGeneration.getGeneratedNation().getNationName());
+                           playthroughAchievementText.setText(currGeneration.getGeneratedAchievement().getName());
+
+                           LinearLayout instructionParentLayout = playthroughDialog.findViewById(R.id.notesBox);
+                           for (String currInstruct : currGeneration.getGeneratedAchievement().getInstructions()) {
+                               View instructionView = getLayoutInflater().inflate(R.layout.instruction_layout, instructionParentLayout, false);
+                               TextView instructionText = instructionView.findViewById(R.id.instruction_layout_text);
+                               instructionText.setText(currInstruct);
+
+                               instructionParentLayout.addView(instructionView);
+                           }
+                           Button notesButton = playthroughDialog.findViewById(R.id.notesButton);
+                           notesButton.setOnClickListener(new View.OnClickListener() {
+                               @Override
+                               public void onClick(View v) {
+                                   final Dialog notesDialog = new Dialog(getActivity(), android.R.style.Theme_Black_NoTitleBar);
+                                   notesDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(160, 0, 0, 0))); // sets gray background
+                                   notesDialog.setContentView(R.layout.template_dialog);
+                                   notesDialog.setCancelable(true);
+                                   notesDialog.show();
+
+                                   Button saveNotesButton = notesDialog.findViewById(R.id.submitNotesButton);
+                                   TextView notesField = notesDialog.findViewById(R.id.notesEditText);
+                                   notesField.setText(currGeneration.getUserNotes());
+                                   saveNotesButton.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           Toast.makeText(getActivity(), "Saved Notes", Toast.LENGTH_SHORT).show();
+                                           currGeneration.setNotes(notesField.getText().toString());
+                                           completed.this.updateGenerationData(currGeneration.getId(), currGeneration);
+                                       }
+                                   });
+                               }
+                           });
+                           playthroughDialog.show();
+                       }
+                   });
+
+
+
                     playthroughItemsLinearLayout.addView(playthroughItem);
                 }
             }
@@ -133,5 +195,25 @@ public class completed extends Fragment {
         if(completedList==null){
             completedList = new ArrayList<>();
         }
+    }
+    private void updateGenerationData(int genId, Generation updatedGeneration){
+        int index = 0;
+        Generation genToUpdate;
+        for(Generation currGen : this.completedList){
+            if(currGen.getId() == genId){
+                genToUpdate = currGen; // dont actually need this line
+                break;
+            }
+            index+=1;
+        }
+
+        SharedPreferences mySharedPreferences = getContext().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPreferencesEditor = mySharedPreferences.edit();
+        Gson gson = new Gson();
+        this.completedList.set(index,updatedGeneration);
+        String json = gson.toJson(this.completedList);
+        sharedPreferencesEditor.putString(COMPLETED_LIST,json);
+        sharedPreferencesEditor.apply();
+        completed.this.loadCompletedListData();
     }
 }
